@@ -1,0 +1,8 @@
+{
+  "name": "Big Bowl Game",
+  "description": "A party game.",
+  "image": "heroku/python",
+  "repository": "https://github.com/superjeffreyc/Big-Bowl-Game",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}
