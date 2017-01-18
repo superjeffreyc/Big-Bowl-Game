@@ -4,21 +4,46 @@
 {% block content %}
 
 <div class="container">
-  <center>
     <div class="container" id="startScreen">
-      <h1>Welcome to Big Bowl</h1>
-      <p>A party game consisting of three rounds using the same word bank.</p>
-      <br>
-      <div>
-      <button class="btn btn-lg btn-default" id="new_game_btn"> New game</button>
-      </div>
-      <br>
-      <div>
-      <button class="btn btn-lg btn-default" id="add_words_btn"> Add words</button>
-      </div>
+      <center>
+        <h1>Welcome to Big Bowl</h1>
+        <p>A party game consisting of three rounds using the same word bank.</p>
+        <br>
+        <div>
+        <button class="btn btn-lg btn-default" id="new_game_btn"> New game</button>
+        </div>
+        <br>
+        <div>
+        <button class="btn btn-lg btn-default" id="add_words_btn"> Add words</button>
+        </div>
+      </center>
     </div>
-  </center>
-  
+    
+    <template class="container" id="lobby">
+      <center>
+        <h1>Room Code: ABCDEF</h1>
+        <p>Word Bank Count: 0</p>
+        <br>
+        <input type="text" id="submit_word_box" />
+        <div>
+          <br>
+          <button class="btn btn-lg btn-default" id="submit_word_btn"> Submit</button>
+        </div>
+      </center>
+    </template>
+    
+    <template class="container" id="joinScreen">
+      <center>
+        <h1>Enter the room code</h1>
+        <br>
+        <input type="text" id="room_code_box" />
+        <div>
+          <br>
+          <button class="btn btn-lg btn-default" id="submit_room_code_btn"> Enter</button>
+        </div>
+      </center>
+    </template>
+    
   
 </div>
 
