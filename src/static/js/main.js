@@ -3,7 +3,7 @@
 $(document).ready(function() {
 
     $('#new_game_btn').click(function () {
-        window.location.href = "http://big-bowl-game-jchan63.c9users.io:8080/lobby/newgame";
+        window.location.href = "https://bigbowl.herokuapp.com/lobby/newgame";
     });
     
     $('#add_words_btn').click(function () {
