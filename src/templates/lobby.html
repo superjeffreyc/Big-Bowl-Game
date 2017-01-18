@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="container">
+    <div class="container" id="lobby">
+      <center>
+        <h1>Room Code: {{ roomCode }}</h1>
+        <p id="word_count">Word Bank Count: 0</p>
+        <br>
+        <br>
+        <p>Enter words below to add to the word bank.</p>
+        <p>Think of words difficult for the opposing team to get but something that everyone on your team knows.</p>
+        <br>
+        <input type="text" id="submit_word_box" />
+        <div>
+          <br>
+          <button class="btn btn-lg btn-default" id="submit_word_btn"> Submit</button>
+        </div>
+      </center>
+    </div>
+</div>
+
+{% endblock %}

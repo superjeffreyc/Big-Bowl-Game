@@ -11,6 +11,6 @@ import src.views
 
 urlpatterns = [
     url(r'^$', src.views.index, name='index'),
-    url(r'^db', src.views.db, name='db'),
+    url(r'^lobby/(?P<roomCode>.*)', src.views.lobby, name='lobby'),
     url(r'^admin/', include(admin.site.urls)),
 ]
