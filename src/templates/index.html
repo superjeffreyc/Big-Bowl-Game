@@ -3,18 +3,20 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container" id="mainScreen">
+    <center><p id="message" style="color:red;"></p></center>
+    
     <div class="container" id="startScreen">
       <center>
         <h1>Welcome to Big Bowl</h1>
         <p>A party game consisting of three rounds using the same word bank.</p>
         <br>
         <div>
-        <button class="btn btn-lg btn-default" id="new_game_btn"> New game</button>
+          <button class="btn btn-lg btn-default" id="new_game_btn"> New game</button>
         </div>
         <br>
         <div>
-        <button class="btn btn-lg btn-default" id="add_words_btn"> Join game</button>
+          <button class="btn btn-lg btn-default" id="add_words_btn"> Join game</button>
         </div>
       </center>
     </div>
@@ -28,10 +30,12 @@
           <br>
           <button class="btn btn-lg btn-default" id="submit_room_code_btn"> Enter</button>
         </div>
+        <div>
+          <br>
+          <button class="btn btn-lg btn-default" id="back_home_btn"> Back</button>
+        </div>
       </center>
     </template>
-    
-  
 </div>
 
 {% endblock %}

@@ -12,5 +12,6 @@ import src.views
 urlpatterns = [
     url(r'^$', src.views.index, name='index'),
     url(r'^lobby/(?P<roomCode>.*)', src.views.lobby, name='lobby'),
+    url(r'^search/(?P<roomCode>.*)', src.views.search, name='search'),
     url(r'^admin/', include(admin.site.urls)),
 ]
