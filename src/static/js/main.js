@@ -5,7 +5,7 @@ var homeURL = "https://bigbowl.herokuapp.com/"
 $(document).ready(function() {
 
     $('#new_game_btn').click(function () {
-        window.location.href = homeURL + "/lobby/newgame";
+        window.location.href = homeURL + "lobby/newgame";
     });
     
     $('#add_words_btn').click(function () {
@@ -21,7 +21,7 @@ $(document).ready(function() {
         code = code.toLowerCase();
         
         if (code.length == 6) {
-            $.get("http://big-bowl-game-jchan63.c9users.io:8080/search/" + code, function(data, status){
+            $.get(homeURL + "search/" + code, function(data, status){
                 if (data == "Found") {
                     window.location.href = homeURL + "lobby/" + code;
                 }
