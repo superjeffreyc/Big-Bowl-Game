@@ -14,7 +14,7 @@ $(document).ready(function() {
     /*
      * Hides the start screen and adds an interface to join an existing game room
      */
-    $('#add_words_btn').click(function () {
+    $('#join_game_btn').click(function () {
         hideStartScreen();
 
         var joinScreen = document.querySelector('#joinScreen');
