@@ -18,8 +18,15 @@ def lobby(request, roomCode = None):
     # If coming from the start screen or if the room code is invalid, create a new room code
     if roomCode == "newgame":
         randomString = get_random_string(length=6, allowed_chars='abcdefghijkmnopqrstuvwxyz')   # Removed lowercase L since it may be interpreted as capital I
+        
+        # Verify that this room code is unique
+        while len(Room.objects.all().filter(code = randomString)) >= 1:
+            randomString = get_random_string(length=6, allowed_chars='abcdefghijkmnopqrstuvwxyz') 
+            
+        # Create the actual room
         room = Room(code = randomString)
         room.save()
+        
         return redirect('lobby', roomCode = randomString)
     
     # Unknown room code - redirect to start screen
