@@ -15,11 +15,8 @@ $(document).ready(function() {
      * Hides the start screen and adds an interface to join an existing game room
      */
     $('#join_game_btn').click(function () {
-        hideStartScreen();
-
-        var joinScreen = document.querySelector('#joinScreen');
-        var content = document.importNode(joinScreen.content, true);
-        $('#mainScreen').append(content);
+        $('#startScreen').hide();
+        $('#joinScreen').attr('class', 'container');    // Make it visible
     });
 
     /*
@@ -50,24 +47,18 @@ $(document).ready(function() {
     });
     
     /*
-     * Returns to the start screen
+     * Returns to the start screen from join screen
+     */
+    $(document).on('click', '#back_btn', function() {
+        $('#joinScreen').attr('class', 'hidden');   // Hide it
+        $('#startScreen').show();
+    });
+    
+    /*
+     * Returns to the start screen from lobby
      */
     $(document).on('click', '#back_home_btn', function() {
         window.location.href = homeURL;
     });
     
 });
-    
-/*
- * Hides start screen
- */
-function hideStartScreen() {
-    $('#startScreen').hide();
-}
-
-/*
- * Shows start screen
- */
-function showStartScreen() {
-    $('#startScreen').show();
-}

@@ -13,15 +13,16 @@
         <br>
         <div>
           <button class="btn btn-lg btn-default" id="new_game_btn"> New game</button>
+          <button class="btn btn-lg btn-default" id="join_game_btn"> Join game</button>
         </div>
         <br>
-        <div>
-          <button class="btn btn-lg btn-default" id="join_game_btn"> Join game</button>
+        <div class="container">
+          <button class="btn btn-lg btn-default" id="how_to_play_btn"> How to play</button>
         </div>
       </center>
     </div>
-    
-    <template class="container" id="joinScreen">
+
+    <div class="hidden" id="joinScreen">
       <center>
         <h1>Enter the room code</h1>
         <br>
@@ -32,10 +33,10 @@
         </div>
         <div>
           <br>
-          <button class="btn btn-lg btn-default" id="back_home_btn"> Back</button>
+          <button class="btn btn-lg btn-default" id="back_btn"> Back</button>
         </div>
       </center>
-    </template>
+    </div>
 </div>
 
 {% endblock %}
