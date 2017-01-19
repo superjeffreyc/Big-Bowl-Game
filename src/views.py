@@ -17,11 +17,11 @@ def lobby(request, roomCode = None):
 
     # If coming from the start screen or if the room code is invalid, create a new room code
     if roomCode == "newgame":
-        randomString = get_random_string(length=6, allowed_chars='abcdefghijkmnopqrstuvwxyz')   # Removed lowercase L since it may be interpreted as capital I
+        randomString = get_random_string(length=6, allowed_chars='0123456789')
         
         # Verify that this room code is unique
         while len(Room.objects.all().filter(code = randomString)) >= 1:
-            randomString = get_random_string(length=6, allowed_chars='abcdefghijkmnopqrstuvwxyz') 
+            randomString = get_random_string(length=6, allowed_chars='0123456789') 
             
         # Create the actual room
         room = Room(code = randomString)

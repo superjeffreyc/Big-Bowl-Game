@@ -29,13 +29,13 @@ $(document).ready(function() {
         var code = $('#room_code_box').val().trim();
         code = code.toLowerCase();
         
-        var hasNumber = /\d/;
+        var hasLetter = /[a-z]/i;
 
-        if (hasNumber.test(code)) {
-            $('#message').html("The room code should not contain any numbers.")
+        if (hasLetter.test(code)) {
+            $('#message').html("The room code should not contain any letters.")
         }
         else if (code.length != 6) {
-            $('#message').html("The room code must be 6 characters.")
+            $('#message').html("The room code must be 6 numbers.")
         }
         else {
             $.get(homeURL + "search/" + code, function(data, status){
