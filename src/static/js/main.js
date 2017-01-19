@@ -29,7 +29,15 @@ $(document).ready(function() {
         var code = $('#room_code_box').val().trim();
         code = code.toLowerCase();
         
-        if (code.length == 6) {
+        var hasNumber = /\d/;
+
+        if (hasNumber.test(code)) {
+            $('#message').html("The room code should not contain any numbers.")
+        }
+        else if (code.length != 6) {
+            $('#message').html("The room code must be 6 characters.")
+        }
+        else {
             $.get(homeURL + "search/" + code, function(data, status){
                 if (data == "Found") {
                     window.location.href = homeURL + "lobby/" + code;
@@ -38,9 +46,6 @@ $(document).ready(function() {
                     $('#message').html(code + " not found")
                 }
             });
-        }
-        else {
-            $('#message').html("The room code must be 6 characters.")
         }
     });
     
