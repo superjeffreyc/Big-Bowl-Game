@@ -32,8 +32,6 @@ $(document).ready(function() {
      */
     $(document).on('click', '#submit_room_code_btn', function() {
         var code = $('#room_code_box').val().trim();
-        code = code.toLowerCase();
-
         var hasLetter = /[a-z]/i;
 
         if (hasLetter.test(code)) {
