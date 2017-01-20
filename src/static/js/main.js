@@ -18,6 +18,14 @@ $(document).ready(function() {
         $('#startScreen').hide();
         $('#joinScreen').attr('class', 'container');    // Make it visible
     });
+    
+    /*
+     * Hides the start screen and displays the rules of the game
+     */
+    $('#how_to_play_btn').click(function () {
+        $('#startScreen').hide();
+        $('#howtoplayScreen').attr('class', 'container');    // Make it visible
+    });
 
     /*
      * Processes the room code user input and checks to see if it actually exists
@@ -51,6 +59,7 @@ $(document).ready(function() {
      */
     $(document).on('click', '#back_btn', function() {
         $('#joinScreen').attr('class', 'hidden');   // Hide it
+        $('#howtoplayScreen').attr('class', 'hidden');   // Hide it
         $('#startScreen').show();
     });
     
