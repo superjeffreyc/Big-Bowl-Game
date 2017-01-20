@@ -18,8 +18,7 @@ $(document).ready(function() {
         var word = $('#submit_word_box').val().trim();
 
         if (word.length <= 30) {
-	        var roomCode = $('#room_code').text()
-	        var code = roomCode.substr(roomCode.length - 6);
+	        var code = getRoomCode();
 
 	        $.post(homeURL + "addword/", {'word': word, 'code': code}, function(data, status){
 	            if (status == "success") {
@@ -52,6 +51,14 @@ $(document).ready(function() {
     });
 
     /*
+     * Moves to the game page
+     */
+    $('#start_game_btn').click(function () {
+        var code = getRoomCode();
+        window.location.href = homeURL + "game/" + code;
+    });
+
+    /*
      * Run this function periodically to update the word count in the lobby
      */
     setInterval(function() {
@@ -70,3 +77,8 @@ $(document).ready(function() {
 
 });
 
+function getRoomCode() {
+    var roomCode = $('#room_code').text()
+	var code = roomCode.substr(roomCode.length - 6);
+	return code;
+}

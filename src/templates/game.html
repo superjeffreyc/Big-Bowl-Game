@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block scripts %}
+<script src="{% static 'js/game.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="container" id="scores">
+      <center>
+        <h1>ROUND 1: TABOO</h1>
+        <h4 id="word_count">Words remaining: {{ count }}</h4>
+        <br>
+        <h4 id="team1pts">Team 1 Score: 0</h4>
+        <h4 id="team2pts">Team 2 Score: 0</h4>
+    </div>
+
+    <div class="container" id="begin">
+      <center>
+        <div>
+          <br>
+          <h2 id="turn"><font color="red">Team 1 Turn</font></h2>
+          <p>When your team is ready, press Begin.</p>
+          <button class="btn btn-lg btn-default" id="begin_btn"> Begin</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+      </center>
+    </div>
+
+    <div class="hidden" id="gameplay">
+      <center>
+        <div>
+          <br>
+          <button class="btn btn-lg btn-default" id="correct_btn" style="background-color:lightgreen"> Correct</button>
+        </div>
+        <p id="lobby_message"></p>
+        <br>
+        <br>
+        <div id="word_display">
+          <h3>Your word is:</h3>
+          <h1 id="word">TEST</h1>
+        </div>
+        <div>
+          <br>
+          <button class="btn btn-lg btn-default" id="show_word_btn"> Show word</button>
+        </div>
+        <br>
+        <br>
+      </center>
+    </div>
+</div>
+
+{% endblock %}

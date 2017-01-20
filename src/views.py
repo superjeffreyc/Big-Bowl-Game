@@ -40,6 +40,17 @@ def lobby(request, roomCode = None):
         count = Room.objects.all().filter(code = roomCode)[0].num_words
         return render(request, 'lobby.html', {'roomCode': roomCode, 'count': count})
 
+def game(request, roomCode = None):
+
+    # Unknown room code - redirect to start screen
+    if len(Room.objects.all().filter(code = roomCode)) == 0:
+        return HttpResponsePermanentRedirect(homeURL)
+
+    # User is starting a game for an existing room
+    else:
+        count = Room.objects.all().filter(code = roomCode)[0].num_words
+        return render(request, 'game.html', {'roomCode': roomCode, 'count': count})
+
 def search(request, roomCode):
     if len(Room.objects.all().filter(code = roomCode)) == 1:
         return HttpResponse("Found")
@@ -66,3 +77,7 @@ def addword(request):
     currentRoom.save()
 
     return HttpResponse("Success")
+
+def getwords(request, roomCode):
+
+    return HttpResponse("TODO")
