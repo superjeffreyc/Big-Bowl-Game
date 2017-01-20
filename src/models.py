@@ -4,6 +4,7 @@ from django.db import models
 class Room(models.Model):
     code = models.CharField(max_length=6)
     creation_time = models.DateTimeField('date created', auto_now_add=True, editable=False)
+    num_words = models.IntegerField(editable=False, default=0)
 
     class Meta:
         db_table = "room"
@@ -17,7 +18,7 @@ class WordBank(models.Model):
     room = models.ForeignKey(Room)
 
     class Meta:
-        db_table = "word"
+        db_table = "wordbank"
         verbose_name_plural = "Words"
 
     def __unicode__(self):
