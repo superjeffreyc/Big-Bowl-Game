@@ -1,6 +1,6 @@
 /* global $ */
 
-var homeURL = "https://bigbowl.herokuapp.com/"
+var homeURL = "http://big-bowl-game-jchan63.c9users.io:8080/"
 
 $(document).ready(function() {
 
@@ -63,6 +63,31 @@ $(document).ready(function() {
         $('#startScreen').show();
     });
 
+    /*
+     * Returns to the start screen from lobby
+     */
+    $(document).on('click', '#back_home_btn', function() {
+        window.location.href = homeURL;
+    });
+
+
+
+    /*
+     * Run this function periodically to update the word count in the lobby
+     */
+    setInterval(function() {
+        var roomCode = $('#room_code').text()
+
+        // User is in the lobby since the room code is being displayed. Update word count every second.
+        if (roomCode != '') {
+            var code = roomCode.substr(roomCode.length - 6);
+
+            $.get(homeURL + "getcount/" + code, function(data, status){
+                $('#word_count').text("Word Bank Count: " + data)
+            });
+        }
+
+    }, 1000);
 
 });
 
