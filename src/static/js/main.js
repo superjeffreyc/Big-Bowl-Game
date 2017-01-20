@@ -4,6 +4,10 @@ var homeURL = "https://bigbowl.herokuapp.com/"
 
 $(document).ready(function() {
 
+// $(window).bind('beforeunload', function(){
+//   return 'Are you sure you want to leave?';
+// });
+
     /*
      * Redirects to a new game room
      */
@@ -75,28 +79,39 @@ $(document).ready(function() {
      */
     $('#submit_word_btn').click(function () {
         var word = $('#submit_word_box').val().trim();
-        var roomCode = $('#room_code').text()
-        var code = roomCode.substr(roomCode.length - 6);
 
-        $.post(homeURL + "addword/", {'word': word, 'code': code}, function(data, status){
-            if (status == "success") {
-                // Clear the text box
-                $('#submit_word_box').val('');
+        if (word.length <= 30) {
+	        var roomCode = $('#room_code').text()
+	        var code = roomCode.substr(roomCode.length - 6);
 
-                // Display success message
-                $('#lobby_message').attr('style', 'color:green');
-                $('#lobby_message').text('Word submitted successfully!')
-            }
-            else {
-                // Display error message
-                $('#lobby_message').attr('style', 'color:red');
-                $('#lobby_message').text('An error occurred while submitting your word.')
-            }
+	        $.post(homeURL + "addword/", {'word': word, 'code': code}, function(data, status){
+	            if (status == "success") {
+	                // Clear the text box
+	                $('#submit_word_box').val('');
 
-            // Show the message to the user for 3 seconds
-            $("#lobby_message").show().delay(3000).fadeOut();
+	                // Display success message
+	                $('#lobby_message').attr('style', 'color:green');
+	                $('#lobby_message').text('Word submitted successfully!')
+	            }
+	            else {
+	                // Display error message
+	                $('#lobby_message').attr('style', 'color:red');
+	                $('#lobby_message').text('An error occurred while submitting your word.')
+	            }
 
-        });
+	            // Show the message to the user for 3 seconds
+	            $("#lobby_message").show().delay(3000).fadeOut();
+
+	        });
+        }
+        else {
+        	// Word is too long - limit of 30 characters
+            $('#lobby_message').attr('style', 'color:red');
+            $('#lobby_message').text('Your word can be at most 30 characters long.')
+        }
+
+		// Display message for 3 seconds
+	    $("#lobby_message").show().delay(3000).fadeOut();
 
     });
 
