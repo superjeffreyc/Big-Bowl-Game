@@ -2,15 +2,19 @@
 
 var homeURL = "https://bigbowl.herokuapp.com/"
 var turn = 1;
+var round = 1;
+var num_words = 0;
+var counter = 0;
+var words;
 
 $(document).ready(function() {
 
 	var code = $('#roomCode').text();
-	var words;
 
 	$.get(homeURL + "getwords/" + code, function(data, status){
 		words = data.split(",")
-		// TODO: Shuffle the array
+		num_words = words.length
+		shuffle(words)
 	});
 
 	/*
@@ -24,14 +28,12 @@ $(document).ready(function() {
 	 * Begins the game, starting with Team 1
 	 */
 	$('#begin_btn').click(function () {
-		$('#begin').hide();
-		$('#gameplay').attr('class', 'container');    // Make it visible
+		if (num_words > 0) {
+			$('#begin').hide();
+			$('#gameplay').attr('class', 'container');    // Make it visible
 
-		$('#word').text(words[0])	// Use the first word ------------TODO: Get random word---------------------
-
-		setTimeout(function(){
-			$('#word_display').show().delay(1000).fadeOut();
-		}, 2000);
+			showNextWord();
+		}
 	});
 
 	/*
@@ -41,5 +43,59 @@ $(document).ready(function() {
 		$('#word_display').show().delay(2000).fadeOut();
 	});
 
+	/*
+	 * Team guessed the word correctly
+	 */
+	$('#correct_btn').click(function () {
+
+		num_words -= 1;
+		updateWordsRemaining();
+
+		if (num_words > 0) {
+			counter += 1;
+			showNextWord();
+		}
+		else {
+			$('#word').text("Round complete!")
+		}
+	});
+
 });
 
+function updateWordsRemaining() {
+	$('#word_count').text("Words remaining: " + num_words);
+}
+
+/*
+ * Get next word from the word bank and display it to the user
+ */
+function showNextWord() {
+	$('#word').text(words[counter])
+
+	setTimeout(function(){
+		$('#word_display').show().delay(2000).fadeOut();
+	}, 0);
+}
+
+/*
+ * Fisher-Yates/Knuth Shuffle Algorithm
+ * https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+ */
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
