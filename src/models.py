@@ -11,4 +11,14 @@ class Room(models.Model):
 
     def __unicode__(self):
        return self.code
-       
+
+class WordBank(models.Model):
+    word = models.CharField(max_length=30)
+    room = models.ForeignKey(Room)
+
+    class Meta:
+        db_table = "word"
+        verbose_name_plural = "Words"
+
+    def __unicode__(self):
+       return self.word
