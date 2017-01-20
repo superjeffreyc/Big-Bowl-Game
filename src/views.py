@@ -11,10 +11,11 @@ from .models import WordBank
 
 homeURL = "https://bigbowl.herokuapp.com/"
 
-# Create your views here.
+# Load the home page
 def index(request):
     return render(request, 'index.html')
 
+# Load the lobby page
 def lobby(request, roomCode = None):
 
     # If coming from the start screen or if the room code is invalid, create a new room code
@@ -40,6 +41,7 @@ def lobby(request, roomCode = None):
         count = Room.objects.all().filter(code = roomCode)[0].num_words
         return render(request, 'lobby.html', {'roomCode': roomCode, 'count': count})
 
+# Load the game page
 def game(request, roomCode = None):
 
     # Unknown room code - redirect to start screen
@@ -51,16 +53,19 @@ def game(request, roomCode = None):
         count = Room.objects.all().filter(code = roomCode)[0].num_words
         return render(request, 'game.html', {'roomCode': roomCode, 'count': count})
 
+# Verify if a room exists
 def search(request, roomCode):
     if len(Room.objects.all().filter(code = roomCode)) == 1:
         return HttpResponse("Found")
     else:
         return HttpResponse("Does not exist")
 
+# Determines how many words are in the word bank for a room
 def getcount(request, roomCode):
     return HttpResponse(str(Room.objects.all().filter(code = roomCode)[0].num_words))
 
 
+# Adds a word to a room
 @csrf_exempt
 def addword(request):
 
@@ -78,6 +83,18 @@ def addword(request):
 
     return HttpResponse("Success")
 
+# Returns a HttpResponse of the list of words associated with a room code
 def getwords(request, roomCode):
 
-    return HttpResponse("TODO")
+    currentRoom = Room.objects.all().filter(code = roomCode)[0]
+    wordList = WordBank.objects.all().filter(room = currentRoom)
+
+    wordString = ""
+
+    # Append each word to the string
+    for wordObject in wordList:
+        wordString += wordObject.word + ","
+
+    wordString = wordString[:-1]    # Remove the trailing comma
+
+    return HttpResponse(wordString)

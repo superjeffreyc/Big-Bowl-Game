@@ -1,8 +1,17 @@
 /* global $ */
 
 var homeURL = "https://bigbowl.herokuapp.com/"
+var turn = 1;
 
 $(document).ready(function() {
+
+	var code = $('#roomCode').text();
+	var words;
+
+	$.get(homeURL + "getwords/" + code, function(data, status){
+		words = data.split(",")
+		// TODO: Shuffle the array
+	});
 
 	/*
 	 * Prompt before leaving lobby
@@ -17,6 +26,8 @@ $(document).ready(function() {
 	$('#begin_btn').click(function () {
 		$('#begin').hide();
 		$('#gameplay').attr('class', 'container');    // Make it visible
+
+		$('#word').text(words[0])	// Use the first word ------------TODO: Get random word---------------------
 
 		setTimeout(function(){
 			$('#word_display').show().delay(1000).fadeOut();
