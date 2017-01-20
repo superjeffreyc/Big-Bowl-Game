@@ -9,7 +9,7 @@ import random
 from .models import Room
 from .models import WordBank
 
-homeURL = "http://bigbowl.herokuapp.com/"
+homeURL = "https://bigbowl.herokuapp.com/"
 
 # Load the home page
 def index(request):

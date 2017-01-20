@@ -1,6 +1,6 @@
 /* global $ */
 
-var homeURL = "http://bigbowl.herokuapp.com/"
+var homeURL = "https://bigbowl.herokuapp.com/"
 var turn = 1;
 var round = 1;
 var num_words = 0;

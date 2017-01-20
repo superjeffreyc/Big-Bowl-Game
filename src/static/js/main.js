@@ -1,6 +1,6 @@
 /* global $ */
 
-var homeURL = "http://bigbowl.herokuapp.com/"
+var homeURL = "https://bigbowl.herokuapp.com/"
 
 $(document).ready(function() {
 
