@@ -36,9 +36,6 @@ $(document).ready(function() {
 	                $('#lobby_message').text('An error occurred while submitting your word.')
 	            }
 
-	            // Show the message to the user for 3 seconds
-	            $("#lobby_message").show().delay(3000).fadeOut();
-
 	        });
         }
         else {
@@ -49,6 +46,8 @@ $(document).ready(function() {
 
 		// Display message for 3 seconds
 	    $("#lobby_message").show().delay(3000).fadeOut();
+	    $('#lobby_message').text('')
+
 
     });
 

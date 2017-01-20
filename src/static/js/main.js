@@ -37,10 +37,10 @@ $(document).ready(function() {
         var hasLetter = /[a-z]/i;
 
         if (hasLetter.test(code)) {
-            $('#message').html("The room code should not contain any letters.")
+            $('#message').text("The room code should not contain any letters.")
         }
         else if (code.length != 6) {
-            $('#message').html("The room code must be 6 numbers.")
+            $('#message').text("The room code must be 6 numbers.")
         }
         else {
             $.get(homeURL + "search/" + code, function(data, status){
@@ -48,10 +48,13 @@ $(document).ready(function() {
                     window.location.href = homeURL + "lobby/" + code;
                 }
                 else {
-                    $('#message').html(code + " not found")
+                    $('#message').text(code + " not found")
                 }
             });
         }
+
+        // Display message to user regarding room code submission
+        $("#message").show().delay(3000).fadeOut();
     });
 
     /*
@@ -60,6 +63,7 @@ $(document).ready(function() {
     $(document).on('click', '#back_btn', function() {
         $('#joinScreen').attr('class', 'hidden');   // Hide it
         $('#howtoplayScreen').attr('class', 'hidden');   // Hide it
+        $('#message').hide();
         $('#startScreen').show();
     });
 
