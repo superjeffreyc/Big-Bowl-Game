@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 	var code = $('#roomCode').text();
 
-	$.get("getwords/" + code, function(data, status){
+	$.get("/getwords/" + code, function(data, status){
 		words = data.split(",")
 		num_words = words.length
 		shuffle(words)

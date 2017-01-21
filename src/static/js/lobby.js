@@ -74,7 +74,7 @@ $(document).ready(function() {
         $.get("/getcount/" + code, function(data, status){
 
             if (data >= 5) {
-                window.location.href = "game/" + code;
+                window.location.href = "/game/" + code;
             }
             else {
                 $('#lobby_message').attr('style', 'color:red');
