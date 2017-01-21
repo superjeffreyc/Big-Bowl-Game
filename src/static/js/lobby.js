@@ -1,6 +1,7 @@
 /* global $ */
 
 var homeURL = "https://bigbowl.herokuapp.com/"
+var words_contributed = 0;
 
 $(document).ready(function() {
 
@@ -28,6 +29,10 @@ $(document).ready(function() {
 	                // Display success message
 	                $('#lobby_message').attr('style', 'color:green');
 	                $('#lobby_message').text('Word submitted successfully!')
+
+	                // Update contribution to room
+	                words_contributed += 1;
+	                $('#contribution').text('You have contributed ' + words_contributed + " word(s)")
 	            }
 	            else {
 	                // Display error message
