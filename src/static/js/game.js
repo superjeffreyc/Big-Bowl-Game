@@ -4,6 +4,7 @@ var turn = 1;
 var timeLimit = 60;
 var timeRemaining = timeLimit;
 var interval;
+var display;
 var round = 1;
 var num_words = 0;
 var counter = 0;
@@ -37,7 +38,7 @@ $(document).ready(function() {
 			$('#begin').hide();
 			$('#gameplay').attr('class', 'container');    // Make it visible
 
-			showNextWord();
+			showCurrentWord();
 
 			interval = setInterval(function() {
 				timeRemaining -= 1;
@@ -55,7 +56,7 @@ $(document).ready(function() {
 	 * Temporarily shows the word for 2 seconds
 	 */
 	$('#show_word_btn').click(function () {
-		$('#word_display').show().delay(2000).fadeOut();
+		showCurrentWord();
 	});
 
 	/*
@@ -78,7 +79,7 @@ $(document).ready(function() {
 				updateRound();
 			}
 			else {
-				showNextWord();
+				showCurrentWord();
 			}
 		}
 
@@ -181,12 +182,16 @@ function updateWordsRemaining() {
 /*
  * Get next word from the word bank and display it to the user
  */
-function showNextWord() {
+function showCurrentWord() {
 	$('#word').text(words[counter])
 
-	setTimeout(function(){
-		$('#word_display').show().delay(2000).fadeOut();
-	}, 0);
+	clearInterval(display);	// Stop the word fadeout timer
+
+	$('#word_display').show();
+
+	display = setTimeout(function(){
+		$('#word_display').fadeOut();
+	}, 2000);
 }
 
 /*
