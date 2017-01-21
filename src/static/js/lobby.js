@@ -94,7 +94,7 @@ $(document).ready(function() {
         if (roomCode != '') {
             var code = roomCode.substr(roomCode.length - 6);
 
-            $.get("getcount/" + code, function(data, status){
+            $.get("/getcount/" + code, function(data, status){
                 $('#word_count').text("Word Bank Count: " + data)
             });
         }
