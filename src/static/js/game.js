@@ -147,6 +147,8 @@ function updateRound() {
 
 	}
 	else {
+		$('#timer').hide();
+		$('#begin').hide();
 		$('#gameplay').attr('class', 'hidden');    // Make it hidden
 		$('#game_over').attr('class', 'container');
 
