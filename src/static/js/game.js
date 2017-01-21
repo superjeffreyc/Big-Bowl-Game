@@ -48,16 +48,18 @@ $(document).ready(function() {
 	 */
 	$('#correct_btn').click(function () {
 
-		num_words -= 1;
-		updateWordsRemaining();
-
 		if (num_words > 0) {
 			counter += 1;
+			num_words -= 1;
+
 			showNextWord();
+			updateWordsRemaining();
+
+			if (num_words == 0) {
+				$('#word').text("Round complete!")
+			}
 		}
-		else {
-			$('#word').text("Round complete!")
-		}
+
 	});
 
 });

@@ -45,7 +45,6 @@ $(document).ready(function() {
 
 		// Display message for 3 seconds
 	    $("#lobby_message").show().delay(3000).fadeOut();
-	    $('#lobby_message').text('')
 
 
     });
