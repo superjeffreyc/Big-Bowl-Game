@@ -58,8 +58,20 @@ $(document).ready(function() {
      * Moves to the game page
      */
     $('#start_game_btn').click(function () {
+
         var code = getRoomCode();
-        window.location.href = homeURL + "game/" + code;
+
+        $.get(homeURL + "getcount/" + code, function(data, status){
+
+            if (data >= 5) {
+                window.location.href = homeURL + "game/" + code;
+            }
+            else {
+                $('#lobby_message').attr('style', 'color:red');
+                $('#lobby_message').text('You must have at least 5 words to start.')
+    	        $("#lobby_message").show().delay(3000).fadeOut();
+            }
+        });
     });
 
     /*
