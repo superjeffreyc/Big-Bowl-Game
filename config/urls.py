@@ -17,5 +17,5 @@ urlpatterns = [
     url(r'^getcount/(?P<roomCode>.*)', src.views.getcount, name='getcount'),
     url(r'^addword/', src.views.addword, name='addword'),
     url(r'^getwords/(?P<roomCode>.*)', src.views.getwords, name='getwords'),
-    url(r'^admin/', include(admin.site.urls)),
+    # url(r'^admin/', include(admin.site.urls)),
 ]
