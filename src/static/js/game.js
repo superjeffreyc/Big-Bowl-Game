@@ -85,6 +85,13 @@ $(document).ready(function() {
 
 	});
 
+	/*
+	 * When play again is clicked, send user back to the home page
+	 */
+	$('#play_again').click(function () {
+		window.location.href = homeURL;
+	});
+
 });
 
 /*
