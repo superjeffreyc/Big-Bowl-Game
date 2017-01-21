@@ -36,7 +36,7 @@ $(document).ready(function() {
         else {
 	        var code = getRoomCode();
 
-	        $.post("addword/", {'word': word, 'code': code}, function(data, status){
+	        $.post("/addword/", {'word': word, 'code': code}, function(data, status){
 	            if (status == "success") {
 	                // Clear the text box
 	                $('#submit_word_box').val('');
@@ -71,7 +71,7 @@ $(document).ready(function() {
 
         var code = getRoomCode();
 
-        $.get("getcount/" + code, function(data, status){
+        $.get("/getcount/" + code, function(data, status){
 
             if (data >= 5) {
                 window.location.href = "game/" + code;

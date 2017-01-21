@@ -39,7 +39,7 @@ $(document).ready(function() {
             $('#message').text("The room code must be 6 numbers.")
         }
         else {
-            $.get("search/" + code, function(data, status){
+            $.get("/search/" + code, function(data, status){
                 if (data == "Found") {
                     window.location.href = "lobby/" + code;
                 }
