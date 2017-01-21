@@ -12,18 +12,21 @@
     <p class="hidden" id="roomCode">{{ roomCode }}</p>
     <div class="container" id="scores">
       <center>
-        <h1>ROUND 1: TABOO</h1>
+        <h1 id="round">ROUND 1: TABOO</h1>
         <h4 id="word_count">Words remaining: {{ count }}</h4>
         <br>
         <h4 id="team1pts">Team 1 Score: 0</h4>
         <h4 id="team2pts">Team 2 Score: 0</h4>
+        <br>
+        <font color="red"><h4 id="timer">Seconds remaining: 60</h4></font>
+
     </div>
 
     <div class="container" id="begin">
       <center>
         <div>
           <br>
-          <h2 id="turn"><font color="red">Team 1 Turn</font></h2>
+          <h1 id="turn">Team 1 Turn</h1>
           <p>When your team is ready, press Begin.</p>
           <button class="btn btn-lg btn-default" id="begin_btn"> Begin</button>
         </div>
@@ -54,6 +57,13 @@
         </div>
         <br>
         <br>
+      </center>
+    </div>
+
+    <div class="hidden" id="game_over">
+      <center>
+        <br>
+        <font color="red"><h1 id="game_over_message"></h1></font>
       </center>
     </div>
 </div>
