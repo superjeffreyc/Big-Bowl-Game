@@ -11,6 +11,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 django.setup()
 
 from src.models import Room
+from src.models import WordBank
 
 # Heroku Scheduler runs this script everyday at midnight UTC.
 currentTime = timezone.now()
@@ -18,15 +19,24 @@ currentTime = timezone.now()
 # Update timezone info for the currently timezone-unaware datetime object
 currentTime = currentTime.replace(tzinfo=pytz.UTC)
 
-# Subtract 24 hours to compare against current rooms 
+# Subtract 24 hours to compare against current rooms
 currentTime -= datetime.timedelta(hours=24)
 
 # Get all rooms
 rooms = Room.objects.all()
 
 # Delete rooms that have existed for over 24 hours
-for room in rooms:
-    if currentTime > room.creation_time:
-        room.delete()
+for currentRoom in rooms:
+
+    if currentTime > currentRoom.creation_time:
+
+        words = WordBank.objects.all().filter(room = currentRoom)
+
+        # Delete all words associated with this room first
+        for word in words:
+            word.delete();
+
+        # Finally, delete the room
+        currentRoom.delete()
 
 
