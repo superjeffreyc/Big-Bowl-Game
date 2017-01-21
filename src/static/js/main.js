@@ -31,9 +31,13 @@ $(document).ready(function() {
     $(document).on('click', '#submit_room_code_btn', function() {
         var code = $('#room_code_box').val().trim();
         var hasLetter = /[a-z]/i;
+		var hasSpecialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/
 
         if (hasLetter.test(code)) {
             $('#message').text("The room code should not contain any letters.")
+        }
+        else if (hasSpecialChar.test(code)) {
+        	$('#message').text("The room code should not contain any special characters.")
         }
         else if (code.length != 6) {
             $('#message').text("The room code must be 6 numbers.")
