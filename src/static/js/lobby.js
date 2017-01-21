@@ -17,8 +17,24 @@ $(document).ready(function() {
      */
     $('#submit_word_btn').click(function () {
         var word = $('#submit_word_box').val().trim();
+        var hasSpecialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/
 
-        if (word.length <= 30) {
+        if (word == '') {
+            // Word cannot be blank
+            $('#lobby_message').attr('style', 'color:red');
+            $('#lobby_message').text('Your word cannot be blank or spaces.')
+        }
+        else if (hasSpecialChar.test(word)) {
+            // Word cannot contain special characters
+            $('#lobby_message').attr('style', 'color:red');
+            $('#lobby_message').text('Your word cannot contain special characters.')
+        }
+        else if (word.length > 30) {
+            // Word is too long - limit of 30 characters
+            $('#lobby_message').attr('style', 'color:red');
+            $('#lobby_message').text('Your word can be at most 30 characters long.')
+        }
+        else {
 	        var code = getRoomCode();
 
 	        $.post(homeURL + "addword/", {'word': word, 'code': code}, function(data, status){
@@ -41,11 +57,6 @@ $(document).ready(function() {
 	            }
 
 	        });
-        }
-        else {
-        	// Word is too long - limit of 30 characters
-            $('#lobby_message').attr('style', 'color:red');
-            $('#lobby_message').text('Your word can be at most 30 characters long.')
         }
 
 		// Display message for 3 seconds
