@@ -68,7 +68,7 @@ $(document).ready(function() {
             }
             else {
                 $('#lobby_message').attr('style', 'color:red');
-                $('#lobby_message').text('You must have at least 5 words to start.')
+                $('#lobby_message').text('The word bank must have at least 5 words.')
     	        $("#lobby_message").show().delay(3000).fadeOut();
             }
         });
