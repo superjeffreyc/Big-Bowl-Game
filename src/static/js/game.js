@@ -1,6 +1,5 @@
 /* global $ */
 
-var homeURL = "https://bigbowl.herokuapp.com/"
 var turn = 1;
 var timeLimit = 60;
 var timeRemaining = timeLimit;
@@ -17,7 +16,7 @@ $(document).ready(function() {
 
 	var code = $('#roomCode').text();
 
-	$.get(homeURL + "getwords/" + code, function(data, status){
+	$.get("getwords/" + code, function(data, status){
 		words = data.split(",")
 		num_words = words.length
 		shuffle(words)
@@ -89,7 +88,7 @@ $(document).ready(function() {
 	 * When play again is clicked, send user back to the home page
 	 */
 	$('#play_again').click(function () {
-		window.location.href = homeURL;
+		window.location.href = "/";
 	});
 
 });

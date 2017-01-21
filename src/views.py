@@ -9,7 +9,6 @@ import random
 from .models import Room
 from .models import WordBank
 
-homeURL = "https://bigbowl.herokuapp.com/"
 
 # Load the home page
 def index(request):
@@ -34,7 +33,7 @@ def lobby(request, roomCode = None):
 
     # Unknown room code - redirect to start screen
     elif len(Room.objects.all().filter(code = roomCode)) == 0:
-        return HttpResponsePermanentRedirect(homeURL)
+        return HttpResponsePermanentRedirect('/')
 
     # User is joining an existing room - get current word bank count
     else:
@@ -46,7 +45,7 @@ def game(request, roomCode = None):
 
     # Unknown room code - redirect to start screen
     if len(Room.objects.all().filter(code = roomCode)) == 0:
-        return HttpResponsePermanentRedirect(homeURL)
+        return HttpResponsePermanentRedirect('/')
 
     # User is starting a game for an existing room
     else:

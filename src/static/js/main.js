@@ -1,14 +1,12 @@
 /* global $ */
 
-var homeURL = "https://bigbowl.herokuapp.com/"
-
 $(document).ready(function() {
 
     /*
      * Redirects to a new game room
      */
     $('#new_game_btn').click(function () {
-        window.location.href = homeURL + "lobby/newgame";
+        window.location.href = "lobby/newgame";
     });
 
     /*
@@ -41,9 +39,9 @@ $(document).ready(function() {
             $('#message').text("The room code must be 6 numbers.")
         }
         else {
-            $.get(homeURL + "search/" + code, function(data, status){
+            $.get("search/" + code, function(data, status){
                 if (data == "Found") {
-                    window.location.href = homeURL + "lobby/" + code;
+                    window.location.href = "lobby/" + code;
                 }
                 else {
                     $('#message').text(code + " not found")

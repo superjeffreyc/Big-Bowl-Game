@@ -1,6 +1,5 @@
 /* global $ */
 
-var homeURL = "https://bigbowl.herokuapp.com/"
 var words_contributed = 0;
 
 $(document).ready(function() {
@@ -9,7 +8,7 @@ $(document).ready(function() {
      * Returns to the start screen from lobby
      */
     $(document).on('click', '#back_home_btn', function() {
-        window.location.href = homeURL;
+        window.location.href = "/";
     });
 
     /*
@@ -37,7 +36,7 @@ $(document).ready(function() {
         else {
 	        var code = getRoomCode();
 
-	        $.post(homeURL + "addword/", {'word': word, 'code': code}, function(data, status){
+	        $.post("addword/", {'word': word, 'code': code}, function(data, status){
 	            if (status == "success") {
 	                // Clear the text box
 	                $('#submit_word_box').val('');
@@ -72,10 +71,10 @@ $(document).ready(function() {
 
         var code = getRoomCode();
 
-        $.get(homeURL + "getcount/" + code, function(data, status){
+        $.get("getcount/" + code, function(data, status){
 
             if (data >= 5) {
-                window.location.href = homeURL + "game/" + code;
+                window.location.href = "game/" + code;
             }
             else {
                 $('#lobby_message').attr('style', 'color:red');
@@ -95,7 +94,7 @@ $(document).ready(function() {
         if (roomCode != '') {
             var code = roomCode.substr(roomCode.length - 6);
 
-            $.get(homeURL + "getcount/" + code, function(data, status){
+            $.get("getcount/" + code, function(data, status){
                 $('#word_count').text("Word Bank Count: " + data)
             });
         }
