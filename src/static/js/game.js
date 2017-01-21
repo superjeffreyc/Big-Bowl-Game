@@ -77,7 +77,6 @@ $(document).ready(function() {
 				$('#word').text("Round complete!")
 				clearInterval(interval);
 				updateRound();
-				switchTurns();
 			}
 			else {
 				showNextWord();
@@ -143,6 +142,9 @@ function updateRound() {
 		// Show the begin button
 		$('#begin').show();
 		$('#gameplay').attr('class', 'hidden');    // Make it hidden
+
+		// Other team gets to go
+		switchTurns();
 
 
 	}
