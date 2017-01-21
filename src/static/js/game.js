@@ -26,9 +26,9 @@ $(document).ready(function() {
 	/*
 	 * Prompt before leaving lobby
 	 */
-	$(window).bind('beforeunload', function(){
+	window.onbeforeunload = function() {
 		return 'Are you sure you want to leave?';
-	});
+	}
 
 	/*
 	 * Begins the game, starting with Team 1
@@ -168,7 +168,7 @@ function updateRound() {
 		else winner = "Tie Game!";
 
 		$('#game_over_message').text(winner)
-
+		window.onbeforeunload = null;
 	}
 }
 
