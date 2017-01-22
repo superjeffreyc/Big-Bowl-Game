@@ -28,8 +28,8 @@ $(document).ready(function() {
             $('#lobby_message').attr('style', 'color:red');
             $('#lobby_message').text('Your word cannot contain special characters.')
         }
-        else if (word.length > 30) {
-            // Word is too long - limit of 30 characters
+        else if (word.length > 50) {
+            // Word is too long - limit of 50 characters
             $('#lobby_message').attr('style', 'color:red');
             $('#lobby_message').text('Your word can be at most 30 characters long.')
         }

@@ -14,7 +14,7 @@ class Room(models.Model):
        return self.code
 
 class WordBank(models.Model):
-    word = models.CharField(max_length=30)
+    word = models.CharField(max_length=50)
     room = models.ForeignKey(Room)
 
     class Meta:
