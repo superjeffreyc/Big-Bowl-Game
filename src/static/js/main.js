@@ -31,16 +31,16 @@ $(document).ready(function() {
     $(document).on('click', '#submit_room_code_btn', function() {
         var code = $('#room_code_box').val().trim();
         var hasLetter = /[a-z]/i;
-		var hasSpecialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/
+		var hasSpecialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
 
         if (hasLetter.test(code)) {
-            $('#message').text("The room code should not contain any letters.")
+            $('#message').text("The room code should not contain any letters.");
         }
         else if (hasSpecialChar.test(code)) {
-        	$('#message').text("The room code should not contain any special characters.")
+        	$('#message').text("The room code should not contain any special characters.");
         }
         else if (code.length != 6) {
-            $('#message').text("The room code must be 6 numbers.")
+            $('#message').text("The room code must be 6 numbers.");
         }
         else {
             $.get("/search/" + code, function(data, status){
@@ -48,7 +48,7 @@ $(document).ready(function() {
                     window.location.href = "lobby/" + code;
                 }
                 else {
-                    $('#message').text(code + " not found")
+                    $('#message').text(code + " not found");
                 }
             });
         }

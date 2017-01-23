@@ -18,9 +18,9 @@ $(document).ready(function() {
 	var code = $('#roomCode').text();
 
 	$.get("/getwords/" + code, function(data, status){
-		words = data.split(",")
-		num_words = words.length
-		shuffle(words)
+		words = data.split(",");
+		num_words = words.length;
+		shuffle(words);
 	});
 
 	/*
@@ -28,7 +28,7 @@ $(document).ready(function() {
 	 */
 	window.onbeforeunload = function() {
 		return 'Are you sure you want to leave?';
-	}
+	};
 
 	/*
 	 * Begins the game, starting with Team 1
@@ -74,7 +74,7 @@ $(document).ready(function() {
 			updateWordsRemaining();
 
 			if (num_words == 0) {
-				$('#word').text("Round complete!")
+				$('#word').text("Round complete!");
 				clearInterval(interval);
 				updateRound();
 			}
@@ -118,7 +118,7 @@ function switchTurns() {
 	// Reset the UI and show the next team's turn
 	$('#begin').show();
 	$('#gameplay').attr('class', 'hidden');
-	$('#turn').text("Team " + turn + " Turn")
+	$('#turn').text("Team " + turn + " Turn");
 	$('#timer').text("Seconds remaining: 60");
 
 }
@@ -142,8 +142,8 @@ function updateRound() {
 
 		// Reshuffle the array and reset words remaining
 		counter = 0;
-		shuffle(words)
-		num_words = words.length
+		shuffle(words);
+		num_words = words.length;
 		updateWordsRemaining();
 
 		// Show the begin button
@@ -167,7 +167,7 @@ function updateRound() {
 		else if (team2score > team1score) winner = "Team 2 Wins!";
 		else winner = "Tie Game!";
 
-		$('#game_over_message').text(winner)
+		$('#game_over_message').text(winner);
 		window.onbeforeunload = null;
 	}
 }
@@ -183,7 +183,7 @@ function updateWordsRemaining() {
  * Get next word from the word bank and display it to the user
  */
 function showCurrentWord() {
-	$('#word').text(words[counter])
+	$('#word').text(words[counter]);
 
 	clearInterval(display);	// Stop the word fadeout timer
 

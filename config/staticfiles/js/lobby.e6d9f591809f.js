@@ -16,41 +16,44 @@ $(document).ready(function() {
      */
     $('#submit_word_btn').click(function () {
         var word = $('#submit_word_box').val().trim();
-        var hasSpecialChar = /[\(\)~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
+        var hasSpecialChar = /[\(\)~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/
 
         if (word == '') {
             // Word cannot be blank
             $('#lobby_message').attr('style', 'color:red');
-            $('#lobby_message').text('Your word cannot be blank or spaces.');
+            $('#lobby_message').text('Your word cannot be blank or spaces.')
         }
         else if (hasSpecialChar.test(word)) {
             // Word cannot contain special characters
             $('#lobby_message').attr('style', 'color:red');
-            $('#lobby_message').text('Your word cannot contain special characters.');
+            $('#lobby_message').text('Your word cannot contain special characters.')
         }
         else if (word.length > 50) {
             // Word is too long - limit of 50 characters
             $('#lobby_message').attr('style', 'color:red');
-            $('#lobby_message').text('Your word can be at most 30 characters long.');
+            $('#lobby_message').text('Your word can be at most 30 characters long.')
         }
         else {
 	        var code = getRoomCode();
 
-	        $.post("/addword/", {'word': word, 'code': code}, function(data, status){
-	            if (data == "Success") {
+	        $.post("/addword/", {'word': word, 'code': "123"}, function(data, status){
+	            if (status == "success") {
 	                // Clear the text box
 	                $('#submit_word_box').val('');
 
 	                // Display success message
 	                $('#lobby_message').attr('style', 'color:green');
-	                $('#lobby_message').text("Word submitted successfully!");
+	                $('#lobby_message').text(data)
 
 	                // Update contribution to room
 	                words_contributed += 1;
-	                $('#contribution').text('You have contributed ' + words_contributed + " word(s)");
+	                $('#contribution').text('You have contributed ' + words_contributed + " word(s)")
 	            }
-
-	            // User will be redirected to home page on error
+	            else {
+	                // Display error message
+	                $('#lobby_message').attr('style', 'color:red');
+	                $('#lobby_message').text(data)
+	            }
 
 	        });
         }
@@ -75,7 +78,7 @@ $(document).ready(function() {
             }
             else {
                 $('#lobby_message').attr('style', 'color:red');
-                $('#lobby_message').text('The word bank must have at least 5 words.');
+                $('#lobby_message').text('The word bank must have at least 5 words.')
     	        $("#lobby_message").show().delay(3000).fadeOut();
             }
         });
@@ -85,14 +88,14 @@ $(document).ready(function() {
      * Run this function periodically to update the word count in the lobby
      */
     setInterval(function() {
-        var roomCode = $('#room_code').text();
+        var roomCode = $('#room_code').text()
 
         // User is in the lobby since the room code is being displayed. Update word count every second.
         if (roomCode != '') {
             var code = roomCode.substr(roomCode.length - 6);
 
             $.get("/getcount/" + code, function(data, status){
-                $('#word_count').text("Word Bank Count: " + data);
+                $('#word_count').text("Word Bank Count: " + data)
             });
         }
 
@@ -101,7 +104,7 @@ $(document).ready(function() {
 });
 
 function getRoomCode() {
-    var roomCode = $('#room_code').text();
+    var roomCode = $('#room_code').text()
 	var code = roomCode.substr(roomCode.length - 6);
 	return code;
 }

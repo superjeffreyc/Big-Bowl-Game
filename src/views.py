@@ -71,8 +71,19 @@ def addword(request):
     userWord = request.POST.get("word")
     roomCode = request.POST.get("code")
 
+    # Incorrect number arguments
+    if userWord == None or roomCode == None:
+        return HttpResponsePermanentRedirect('/')
+
     # Create new word in WordBank model
-    currentRoom = Room.objects.all().filter(code = roomCode)[0]
+    currentRoom = Room.objects.all().filter(code = roomCode)
+
+    # Bad room code
+    if len(currentRoom) != 1:
+        return HttpResponsePermanentRedirect('/')
+
+    currentRoom = currentRoom[0]    # Get the first and only room
+
     newWord = WordBank(word = userWord, room = currentRoom)
     newWord.save()
 
