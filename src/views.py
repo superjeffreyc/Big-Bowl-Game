@@ -43,20 +43,15 @@ def lobby(request, roomCode = None):
 # Load the game page
 def game(request, roomCode = None):
 
+    rooms = Room.objects.all().filter(code = roomCode)
+
     # Unknown room code - redirect to start screen
-    if len(Room.objects.all().filter(code = roomCode)) == 0:
+    if len(rooms) != 1:
         return HttpResponsePermanentRedirect('/')
 
     # User is starting a game for an existing room
     else:
-        room = Room.objects.all().filter(code = roomCode)
-
-        # Bad room code
-        if len(room) != 1:
-            return HttpResponsePermanentRedirect('/')
-
-        count = room[0].num_words   # Get number of words for first and only room
-
+        count = rooms[0].num_words   # Get number of words for first and only room
         return render(request, 'game.html', {'roomCode': roomCode, 'count': count})
 
 # Verify if a room exists
