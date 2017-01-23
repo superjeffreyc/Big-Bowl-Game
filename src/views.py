@@ -32,7 +32,7 @@ def lobby(request, roomCode = None):
         return redirect('lobby', roomCode = randomString)
 
     # Unknown room code - redirect to start screen
-    elif len(Room.objects.all().filter(code = roomCode)) == 0:
+    elif len(Room.objects.all().filter(code = roomCode)) != 1:
         return HttpResponsePermanentRedirect('/')
 
     # User is joining an existing room - get current word bank count
