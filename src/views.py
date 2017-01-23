@@ -54,10 +54,14 @@ def game(request, roomCode = None):
 
 # Verify if a room exists
 def search(request, roomCode):
-    if len(Room.objects.all().filter(code = roomCode)) == 1:
+    roomCount = len(Room.objects.all().filter(code = roomCode))
+
+    if roomCount == 1:
         return HttpResponse("Found")
-    else:
+    elif roomCount == 0:
         return HttpResponse("Does not exist")
+    else:
+        return HttpResponse("Error. Multiple rooms found.")
 
 # Determines how many words are in the word bank for a room
 def getcount(request, roomCode):
