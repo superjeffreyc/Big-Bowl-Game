@@ -49,7 +49,14 @@ def game(request, roomCode = None):
 
     # User is starting a game for an existing room
     else:
-        count = Room.objects.all().filter(code = roomCode)[0].num_words
+        room = Room.objects.all().filter(code = roomCode)
+
+        # Bad room code
+        if len(room) != 1:
+            return HttpResponsePermanentRedirect('/')
+
+        count = room[0].num_words   # Get number of words for first and only room
+
         return render(request, 'game.html', {'roomCode': roomCode, 'count': count})
 
 # Verify if a room exists
@@ -59,9 +66,9 @@ def search(request, roomCode):
     if roomCount == 1:
         return HttpResponse("Found")
     elif roomCount == 0:
-        return HttpResponse("Does not exist")
+        return HttpResponse("Room " + roomCode + " does not exist")
     else:
-        return HttpResponse("Error. Multiple rooms found.")
+        return HttpResponse("Error. Found multiple rooms with the same code.")
 
 # Determines how many words are in the word bank for a room
 def getcount(request, roomCode):
@@ -80,13 +87,13 @@ def addword(request):
         return HttpResponsePermanentRedirect('/')
 
     # Create new word in WordBank model
-    currentRoom = Room.objects.all().filter(code = roomCode)
+    rooms = Room.objects.all().filter(code = roomCode)
 
     # Bad room code
-    if len(currentRoom) != 1:
+    if len(rooms) != 1:
         return HttpResponsePermanentRedirect('/')
 
-    currentRoom = currentRoom[0]    # Get the first and only room
+    currentRoom = rooms[0]    # Get the first and only room
 
     newWord = WordBank(word = userWord, room = currentRoom)
     newWord.save()

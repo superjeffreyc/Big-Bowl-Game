@@ -36,7 +36,7 @@ $(document).ready(function() {
         else {
 	        var code = getRoomCode();
 
-	        $.post("/addword/", {'word': word, 'code': code}, function(data, status){
+	        $.post("/addword/", {'word': word, 'code': "code"}, function(data, status){
 	            if (data == "Success") {
 	                // Clear the text box
 	                $('#submit_word_box').val('');
@@ -50,7 +50,6 @@ $(document).ready(function() {
 	                $('#contribution').text('You have contributed ' + words_contributed + " word(s)");
 	            }
 	            else {
-	                // Bad room code. Redirect user to home page
 	                window.location.href = "/";
 	            }
 

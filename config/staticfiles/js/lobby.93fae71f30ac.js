@@ -50,6 +50,8 @@ $(document).ready(function() {
 	                $('#contribution').text('You have contributed ' + words_contributed + " word(s)");
 	            }
 	            else {
+	                $('#lobby_message').text(data + " " + status);
+
 	                // Bad room code. Redirect user to home page
 	                window.location.href = "/";
 	            }
