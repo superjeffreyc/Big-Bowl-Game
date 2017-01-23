@@ -16,7 +16,7 @@ $(document).ready(function() {
      */
     $('#submit_word_btn').click(function () {
         var word = $('#submit_word_box').val().trim();
-        var hasSpecialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/
+        var hasSpecialChar = /[\(\)~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/
 
         if (word == '') {
             // Word cannot be blank
