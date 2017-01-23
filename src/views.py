@@ -68,7 +68,7 @@ def search(request, roomCode):
     elif roomCount == 0:
         return HttpResponse("Room " + roomCode + " does not exist")
     else:
-        return HttpResponse("Error. Found multiple rooms with the same code.")
+        return HttpResponse("Error. Found multiple rooms with the same code. Please make a new game.")
 
 # Determines how many words are in the word bank for a room
 def getcount(request, roomCode):

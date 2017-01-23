@@ -48,7 +48,7 @@ $(document).ready(function() {
                     window.location.href = "lobby/" + code;
                 }
                 else {
-                    $('#message').text(code + " not found");
+                    $('#message').text(data);
                 }
             });
         }
