@@ -72,7 +72,7 @@ def getcount(request, roomCode):
 
     # Bad room code
     if len(rooms) != 1:
-        return HttpResponsePermanentRedirect('/')
+        return HttpResponse('Room no longer exists')
 
     return HttpResponse(str(rooms[0].num_words))
 

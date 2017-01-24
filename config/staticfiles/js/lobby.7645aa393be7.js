@@ -93,13 +93,6 @@ $(document).ready(function() {
         $.get("/getcount/" + code, function(data, status){
 
             if (data >= 5) {
-                /*
-            	 * Prompt before leaving lobby
-            	 */
-            	window.onbeforeunload = function() {
-            		return 'Are you sure you want to leave?';
-            	};
-
                 // Begin the game
                 clearInterval(word_count_interval);
                 $('#lobby').hide();
@@ -149,6 +142,13 @@ $(document).ready(function() {
     		updateWordsRemaining();
     	});
     }
+
+	/*
+	 * Prompt before leaving lobby
+	 */
+	window.onbeforeunload = function() {
+		return 'Are you sure you want to leave?';
+	};
 
 	/*
 	 * Begins the game, starting with Team 1

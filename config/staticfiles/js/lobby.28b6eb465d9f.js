@@ -93,18 +93,10 @@ $(document).ready(function() {
         $.get("/getcount/" + code, function(data, status){
 
             if (data >= 5) {
-                /*
-            	 * Prompt before leaving lobby
-            	 */
-            	window.onbeforeunload = function() {
-            		return 'Are you sure you want to leave?';
-            	};
-
                 // Begin the game
                 clearInterval(word_count_interval);
                 $('#lobby').hide();
                 $('#gameScreen').attr('class', 'container');
-                getWords();
             }
             else {
                 $('#lobby_message').attr('style', 'color:red');
@@ -126,12 +118,7 @@ $(document).ready(function() {
         word_count_interval = setInterval(function() {
 
             $.get("/getcount/" + code, function(data, status){
-                if (data == "Room no longer exists") {
-                    window.location.href = '/';
-                }
-                else {
-                    $('#word_count').text("Word Bank Count: " + data);
-                }
+                $('#word_count').text("Word Bank Count: " + data);
             });
 
         }, 1000);
@@ -141,14 +128,18 @@ $(document).ready(function() {
     /************************* GAME FUNCTIONS **********************************/
     /***************************************************************************/
 
-    function getWords() {
-    	$.get("/getwords/" + code, function(data, status){
-    		words = data.split(",");
-    		num_words = words.length;
-    		shuffle(words);
-    		updateWordsRemaining();
-    	});
-    }
+	$.get("/getwords/" + code, function(data, status){
+		words = data.split(",");
+		num_words = words.length;
+		shuffle(words);
+	});
+
+	/*
+	 * Prompt before leaving lobby
+	 */
+	window.onbeforeunload = function() {
+		return 'Are you sure you want to leave?';
+	};
 
 	/*
 	 * Begins the game, starting with Team 1
@@ -294,7 +285,7 @@ $(document).ready(function() {
      * Update the word count remaining on the screen
      */
     function updateWordsRemaining() {
-    	$('#words_remaining').text("Words remaining: " + num_words);
+    	$('#word_count').text("Words remaining: " + num_words);
     }
 
     /*
