@@ -60,8 +60,8 @@ $(document).ready(function() {
     	$('#room_code').text('Room Code: ');
 		$('#team1pts').text("Team 1 Score: 0");
 		$('#team2pts').text("Team 2 Score: 0");
-		$('#lobby_message').hide();
-		$('#message').hide();
+		$('#lobby_message').text("");
+		$('#message').text("");
 	}
 
 	/*
