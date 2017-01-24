@@ -72,13 +72,13 @@ $(document).ready(function() {
 		var hasSpecialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
 
         if (hasLetter.test(userCode)) {
-            $('#message').text("The room code should not contain any letters.").show().delay(3000).fadeOut();
+            $('#message').text("The room code should not contain any letters.");
         }
         else if (hasSpecialChar.test(userCode)) {
-        	$('#message').text("The room code should not contain any special characters.").show().delay(3000).fadeOut();
+        	$('#message').text("The room code should not contain any special characters.");
         }
         else if (userCode.length != 6) {
-            $('#message').text("The room code must be 6 numbers.").show().delay(3000).fadeOut();
+            $('#message').text("The room code must be 6 numbers.");
         }
         else {
             $.get("/search/" + userCode, function(data, status){
@@ -89,11 +89,13 @@ $(document).ready(function() {
 			        joinLobby();
                 }
                 else {
-                    $('#message').text(data).show().delay(3000).fadeOut();
+                    $('#message').text(data);
                 }
             });
         }
 
+        // Display message to user regarding room code submission
+        $("#message").show().delay(3000).fadeOut();
     });
 
     /*
@@ -106,9 +108,6 @@ $(document).ready(function() {
         $('#startScreen').show();
     });
 
-	/*
-     * Get new room code and show the lobby
-     */
     function setupLobby() {
 
     	$.get("/createroom/", function(data, status){
@@ -127,9 +126,6 @@ $(document).ready(function() {
 
     }
 
-	/*
-     * Join an existing room and show the lobby
-     */
     function joinLobby() {
     	$('#gameRoomCode').text(code);
 		$('#room_code').text('Room Code: ' + code);

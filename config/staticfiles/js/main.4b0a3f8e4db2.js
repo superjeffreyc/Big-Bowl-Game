@@ -25,25 +25,11 @@ $(document).ready(function() {
     /***************************************************************************/
 
 	/*
-     * Show the home screen and hide anything else that may be visible
-     */
-	function goHome() {
-
-		$('#startScreen').show();
-        $('#joinScreen').attr('class', 'hidden');
-        $('#lobby').attr('class', 'hidden');
-        $('#gameScreen').attr('class', 'hidden');
-
-        // Reset any room codes
-        code = "";
-        $('#gameRoomCode').text('');
-    	$('#room_code').text('Room Code: ');
-	}
-
-	/*
-     * Gets a new room code and proceeds to lobby
+     * Redirects to a new game room
      */
     $('#new_game_btn').click(function () {
+    	$('#startScreen').hide();
+        $('#lobby').attr('class', 'container');    // Make it visible
         setupLobby();
     });
 
@@ -67,33 +53,34 @@ $(document).ready(function() {
      * Processes the room code user input and checks to see if it actually exists
      */
     $(document).on('click', '#submit_room_code_btn', function() {
-        var userCode = $('#room_code_box').val().trim();
+        var code = $('#room_code_box').val().trim();
         var hasLetter = /[a-z]/i;
 		var hasSpecialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
 
-        if (hasLetter.test(userCode)) {
-            $('#message').text("The room code should not contain any letters.").show().delay(3000).fadeOut();
+        if (hasLetter.test(code)) {
+            $('#message').text("The room code should not contain any letters.");
         }
-        else if (hasSpecialChar.test(userCode)) {
-        	$('#message').text("The room code should not contain any special characters.").show().delay(3000).fadeOut();
+        else if (hasSpecialChar.test(code)) {
+        	$('#message').text("The room code should not contain any special characters.");
         }
-        else if (userCode.length != 6) {
-            $('#message').text("The room code must be 6 numbers.").show().delay(3000).fadeOut();
+        else if (code.length != 6) {
+            $('#message').text("The room code must be 6 numbers.");
         }
         else {
-            $.get("/search/" + userCode, function(data, status){
+            $.get("/search/" + code, function(data, status){
                 if (data == "Found") {
-                	code = userCode;
 			        $('#joinScreen').attr('class', 'hidden');    // Make it visible
 			        $('#lobby').attr('class', 'container');    // Make it visible
-			        joinLobby();
+			        setupLobby();
                 }
                 else {
-                    $('#message').text(data).show().delay(3000).fadeOut();
+                    $('#message').text(data);
                 }
             });
         }
 
+        // Display message to user regarding room code submission
+        $("#message").show().delay(3000).fadeOut();
     });
 
     /*
@@ -106,35 +93,17 @@ $(document).ready(function() {
         $('#startScreen').show();
     });
 
-	/*
-     * Get new room code and show the lobby
-     */
     function setupLobby() {
-
     	$.get("/createroom/", function(data, status){
-
-    		if (status == "success") {
-	            code = data;
-	            $('#gameRoomCode').text(data);
-	    		$('#room_code').text('Room Code: ' + code);
-				startWordCountInterval();
-
-				// Hide home screen and show lobby
-				$('#startScreen').hide();
-	        	$('#lobby').attr('class', 'container');
-    		}
+    		// TODO Add check for failure to create room
+            code = data;
+            $('#gameRoomCode').text(data);
+    		$('#roomCode').text('Room Code: ' + code);
+			startWordCountInterval();
 		});
 
     }
 
-	/*
-     * Join an existing room and show the lobby
-     */
-    function joinLobby() {
-    	$('#gameRoomCode').text(code);
-		$('#room_code').text('Room Code: ' + code);
-		startWordCountInterval();
-    }
 
     /***************************************************************************/
     /************************* LOBBY FUNCTIONS *********************************/
@@ -144,8 +113,7 @@ $(document).ready(function() {
      * Returns to the start screen from lobby
      */
     $(document).on('click', '#back_home_btn', function() {
-        $('#lobby').attr('class', 'hidden');
-        $('#startScreen').show();
+        window.location.href = "/";
     });
 
     /*
@@ -187,7 +155,7 @@ $(document).ready(function() {
 	            }
 	            else {
 	                // Bad room code. Redirect user to home page
-	                goHome();
+	                window.location.href = "/";
 	            }
 
 
@@ -236,13 +204,13 @@ $(document).ready(function() {
 
     function startWordCountInterval() {
         /*
-         * Run this function every second to update the word count in the lobby
+         * Run this function periodically to update the word count in the lobby
          */
         word_count_interval = setInterval(function() {
 
             $.get("/getcount/" + code, function(data, status){
                 if (data == "Room no longer exists") {
-                    goHome();
+                    window.location.href = '/';
                 }
                 else {
                     $('#word_count').text("Word Bank Count: " + data);
@@ -324,7 +292,7 @@ $(document).ready(function() {
 	 * When play again is clicked, send user back to the home page
 	 */
 	$('#play_again').click(function () {
-		goHome();
+		window.location.href = "/";
 	});
 
     /*

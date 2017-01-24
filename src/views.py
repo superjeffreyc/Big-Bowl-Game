@@ -126,3 +126,17 @@ def getwords(request, roomCode):
     wordString = wordString[:-1]    # Remove the trailing comma
 
     return HttpResponse(wordString)
+
+# Get a new room code
+def createroom(request):
+    randomString = get_random_string(length=6, allowed_chars='0123456789')
+
+    # Verify that this room code is unique
+    while len(Room.objects.all().filter(code = randomString)) >= 1:
+        randomString = get_random_string(length=6, allowed_chars='0123456789')
+
+    # Create the actual room
+    room = Room(code = randomString)
+    room.save()
+
+    return HttpResponse(randomString)

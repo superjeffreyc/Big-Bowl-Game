@@ -76,6 +76,100 @@
         </div>
     </div>
 
+
+    <div class="hidden" id="lobby">
+      <center>
+        <h1 id="room_code">Room Code: ------</h1>
+        <p id="word_count">Word Bank Count: 0</p>
+        <p id="contribution">You have contributed 0 word(s)</p>
+        <br>
+        <br>
+        <p>Enter words below to add to the word bank.</p>
+        <p>Think of difficult words for the opposing team but remember that everyone on your team should be able to easily describe it.</p>
+        <br>
+        <input type="text" id="submit_word_box" />
+        <div>
+          <br>
+          <button class="btn btn-lg btn-default" id="submit_word_btn"> Submit</button>
+        </div>
+        <br>
+        <p id="lobby_message"></p>
+        <p>_____________________________________________________________________________________</p>
+        <p>When you are happy with the amount of words in the word bank, click Start Game below.</p>
+        <p>Note: Only one device is required to play once you start the game. Simply pass the designated device from team to team.</p>
+        <div>
+          <br>
+          <button class="btn btn-lg btn-default" id="start_game_btn" style="background-color:lightgreen"> Start Game</button>
+           <button class="btn btn-lg btn-default" id="back_home_btn" style="background-color:#ff5555"> Leave Room</button>
+        </div>
+      </center>
+    </div>
+
+    <div class="hidden" id="gameScreen">
+
+      <p class="hidden" id="gameRoomCode">{{ roomCode }}</p>
+      <div class="container" id="scores">
+        <center>
+          <h1 id="round">ROUND 1: TABOO</h1>
+          <h4 id="words_remaining">Words remaining: {{ count }}</h4>
+          <br>
+          <h4 id="team1pts">Team 1 Score: 0</h4>
+          <h4 id="team2pts">Team 2 Score: 0</h4>
+          <br>
+          <font color="red"><h4 id="timer">Seconds remaining: 60</h4></font>
+
+      </div>
+
+      <div class="container" id="begin">
+        <center>
+          <div>
+            <br>
+            <h1 id="turn">Team 1 Turn</h1>
+            <p>When your team is ready, press Begin.</p>
+            <button class="btn btn-lg btn-default" id="begin_btn"> Begin</button>
+          </div>
+          <br>
+          <br>
+          <br>
+          <br>
+        </center>
+      </div>
+
+      <div class="hidden" id="gameplay">
+        <center>
+          <div>
+            <br>
+            <button class="btn btn-lg btn-default" id="correct_btn" style="background-color:lightgreen"> Correct</button>
+          </div>
+          <p id="lobby_message"></p>
+          <br>
+          <br>
+          <div id="word_display">
+            <p>________________________________________________</p>
+            <h1 id="word"></h1>
+            <p>________________________________________________</p>
+          </div>
+          <div>
+            <br>
+            <button class="btn btn-lg btn-default" id="show_word_btn"> Show word</button>
+          </div>
+          <br>
+          <br>
+        </center>
+      </div>
+
+      <div class="hidden" id="game_over">
+        <center>
+          <br>
+          <font color="red"><h1 id="game_over_message"></h1></font>
+          <div>
+            <br>
+            <button class="btn btn-lg btn-default" id="play_again"> Play Again</button>
+          </div>
+        </center>
+      </div>
+  </div>
+
 </div>
 
 {% endblock %}
