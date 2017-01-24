@@ -171,7 +171,8 @@ $(document).ready(function() {
      * Returns to the start screen from lobby
      */
     $(document).on('click', '#back_home_btn', function() {
-        goHome();
+        $('#lobby').attr('class', 'hidden');
+        $('#startScreen').show();
     });
 
     /*
@@ -222,6 +223,7 @@ $(document).ready(function() {
 
 		// Display message for 3 seconds
 	    $("#lobby_message").show().delay(3000).fadeOut();
+		$("#lobby_message").text("").delay(3000);
 
     });
 

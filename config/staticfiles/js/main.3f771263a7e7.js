@@ -29,20 +29,16 @@ $(document).ready(function() {
      */
 	function goHome() {
 
-		resetValues();
 		$('#startScreen').show();
         $('#joinScreen').attr('class', 'hidden');
         $('#lobby').attr('class', 'hidden');
         $('#gameScreen').attr('class', 'hidden');
 		$('#howtoplayScreen').attr('class', 'hidden');
 
+        resetValues();
 	}
 
 	function resetValues() {
-
-		clearInterval(interval);
-		clearInterval(word_count_interval);
-		window.onbeforeunload = null;
 
 		// Reset any game values
         code = "";
@@ -60,6 +56,9 @@ $(document).ready(function() {
     	$('#room_code').text('Room Code: ');
 		$('#team1pts').text("Team 1 Score: 0");
 		$('#team2pts').text("Team 2 Score: 0");
+		clearInterval(interval);
+		clearInterval(word_count_interval);
+		window.onbeforeunload = null;
 	}
 
 	/*
@@ -171,7 +170,8 @@ $(document).ready(function() {
      * Returns to the start screen from lobby
      */
     $(document).on('click', '#back_home_btn', function() {
-        goHome();
+        $('#lobby').attr('class', 'hidden');
+        $('#startScreen').show();
     });
 
     /*
@@ -222,6 +222,7 @@ $(document).ready(function() {
 
 		// Display message for 3 seconds
 	    $("#lobby_message").show().delay(3000).fadeOut();
+		$("#lobby_message").text("").delay(3000);
 
     });
 
