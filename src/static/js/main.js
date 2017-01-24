@@ -137,7 +137,7 @@ $(document).ready(function() {
      */
     function setupLobby() {
 
-    	$.get("/createroom/", function(data, status){
+    	$.post("/createroom/", {}, function(data, status){
 
     		if (status == "success") {
 	            code = data;
@@ -268,7 +268,7 @@ $(document).ready(function() {
         word_count_interval = setInterval(function() {
 
             $.get("/getcount/" + code, function(data, status){
-                if (data == "Room no longer exists") {
+                if (data == "Invalid room code") {
                     goHome();
                 }
                 else {

@@ -11,8 +11,6 @@ import src.views
 
 urlpatterns = [
     url(r'^$', src.views.index, name='index'),
-    url(r'^lobby/(?P<roomCode>.*)', src.views.lobby, name='lobby'),
-    url(r'^game/(?P<roomCode>.*)', src.views.game, name='game'),
     url(r'^search/(?P<roomCode>.*)', src.views.search, name='search'),
     url(r'^getcount/(?P<roomCode>.*)', src.views.getcount, name='getcount'),
     url(r'^createroom/', src.views.createroom, name='createroom'),

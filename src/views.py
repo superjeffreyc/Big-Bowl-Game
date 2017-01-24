@@ -14,46 +14,6 @@ from .models import WordBank
 def index(request):
     return render(request, 'index.html')
 
-# Load the lobby page
-def lobby(request, roomCode = None):
-
-    # If coming from the start screen or if the room code is invalid, create a new room code
-    if roomCode == "newgame":
-        randomString = get_random_string(length=6, allowed_chars='0123456789')
-
-        # Verify that this room code is unique
-        while len(Room.objects.all().filter(code = randomString)) >= 1:
-            randomString = get_random_string(length=6, allowed_chars='0123456789')
-
-        # Create the actual room
-        room = Room(code = randomString)
-        room.save()
-
-        return redirect('lobby', roomCode = randomString)
-
-    # Unknown room code - redirect to start screen
-    elif len(Room.objects.all().filter(code = roomCode)) != 1:
-        return HttpResponsePermanentRedirect('/')
-
-    # User is joining an existing room - get current word bank count
-    else:
-        count = Room.objects.all().filter(code = roomCode)[0].num_words
-        return render(request, 'lobby.html', {'roomCode': roomCode, 'count': count})
-
-# Load the game page
-def game(request, roomCode = None):
-
-    rooms = Room.objects.all().filter(code = roomCode)
-
-    # Unknown room code - redirect to start screen
-    if len(rooms) != 1:
-        return HttpResponsePermanentRedirect('/')
-
-    # User is starting a game for an existing room
-    else:
-        count = rooms[0].num_words   # Get number of words for first and only room
-        return render(request, 'game.html', {'roomCode': roomCode, 'count': count})
-
 # Verify if a room exists
 def search(request, roomCode):
     roomCount = len(Room.objects.all().filter(code = roomCode))
@@ -72,7 +32,7 @@ def getcount(request, roomCode):
 
     # Bad room code
     if len(rooms) != 1:
-        return HttpResponse('Room no longer exists')
+        return HttpResponse('Invalid room code')
 
     return HttpResponse(str(rooms[0].num_words))
 
@@ -128,6 +88,7 @@ def getwords(request, roomCode):
     return HttpResponse(wordString)
 
 # Get a new room code
+@csrf_exempt
 def createroom(request):
     randomString = get_random_string(length=6, allowed_chars='0123456789')
 

@@ -137,7 +137,7 @@ $(document).ready(function() {
      */
     function setupLobby() {
 
-    	$.post("/createroom/", {}, function(data, status){
+    	$.post("/createroom/", function(data, status){
 
     		if (status == "success") {
 	            code = data;
