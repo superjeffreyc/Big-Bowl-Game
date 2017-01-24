@@ -34,8 +34,21 @@ $(document).ready(function() {
         $('#lobby').attr('class', 'hidden');
         $('#gameScreen').attr('class', 'hidden');
 
-        // Reset any room codes
+        resetValues();
+	}
+
+	function resetValues() {
+
+		// Reset any game values
         code = "";
+        turn = 1;
+		round = 1;
+		num_words = 0;
+		counter = 0;
+		words = "";
+		team1score = 0;
+		team2score = 0;
+
         $('#gameRoomCode').text('');
     	$('#room_code').text('Room Code: ');
 	}
@@ -123,6 +136,7 @@ $(document).ready(function() {
 				$('#startScreen').hide();
 	        	$('#lobby').attr('class', 'container');
     		}
+
 		});
 
     }
@@ -217,9 +231,11 @@ $(document).ready(function() {
 
                 // Begin the game
                 clearInterval(word_count_interval);
-                $('#lobby').hide();
+                $('#lobby').attr('class', 'hidden');
                 $('#gameScreen').attr('class', 'container');
                 getWords();
+                $('#begin').show();
+                $('#timer').show();
             }
             else {
                 $('#lobby_message').attr('style', 'color:red');
@@ -324,6 +340,7 @@ $(document).ready(function() {
 	 * When play again is clicked, send user back to the home page
 	 */
 	$('#play_again').click(function () {
+		$('#game_over').attr('class', 'hidden');
 		goHome();
 	});
 

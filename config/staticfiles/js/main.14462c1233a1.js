@@ -123,10 +123,11 @@ $(document).ready(function() {
      * Get new room code and show the lobby
      */
     function setupLobby() {
-
+		$('#message').text("IN SETUP");
     	$.get("/createroom/", function(data, status){
 
     		if (status == "success") {
+    			$('#message').text(data)
 	            code = data;
 	            $('#gameRoomCode').text(data);
 	    		$('#room_code').text('Room Code: ' + code);
@@ -136,7 +137,9 @@ $(document).ready(function() {
 				$('#startScreen').hide();
 	        	$('#lobby').attr('class', 'container');
     		}
-
+    		else {
+    			$('#message').text("ERROR");
+    		}
 		});
 
     }
@@ -231,11 +234,9 @@ $(document).ready(function() {
 
                 // Begin the game
                 clearInterval(word_count_interval);
-                $('#lobby').attr('class', 'hidden');
+                $('#lobby').hide();
                 $('#gameScreen').attr('class', 'container');
                 getWords();
-                $('#begin').show();
-                $('#timer').show();
             }
             else {
                 $('#lobby_message').attr('style', 'color:red');
@@ -340,7 +341,6 @@ $(document).ready(function() {
 	 * When play again is clicked, send user back to the home page
 	 */
 	$('#play_again').click(function () {
-		$('#game_over').attr('class', 'hidden');
 		goHome();
 	});
 

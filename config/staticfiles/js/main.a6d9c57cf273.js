@@ -234,8 +234,6 @@ $(document).ready(function() {
                 $('#lobby').attr('class', 'hidden');
                 $('#gameScreen').attr('class', 'container');
                 getWords();
-                $('#begin').show();
-                $('#timer').show();
             }
             else {
                 $('#lobby_message').attr('style', 'color:red');
@@ -340,7 +338,6 @@ $(document).ready(function() {
 	 * When play again is clicked, send user back to the home page
 	 */
 	$('#play_again').click(function () {
-		$('#game_over').attr('class', 'hidden');
 		goHome();
 	});
 

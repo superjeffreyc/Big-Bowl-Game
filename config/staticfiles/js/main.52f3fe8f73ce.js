@@ -48,6 +48,8 @@ $(document).ready(function() {
 		words = "";
 		team1score = 0;
 		team2score = 0;
+		clearInterval(word_count_interval);
+		clearInterval(interval);
 
         $('#gameRoomCode').text('');
     	$('#room_code').text('Room Code: ');
@@ -234,8 +236,6 @@ $(document).ready(function() {
                 $('#lobby').attr('class', 'hidden');
                 $('#gameScreen').attr('class', 'container');
                 getWords();
-                $('#begin').show();
-                $('#timer').show();
             }
             else {
                 $('#lobby_message').attr('style', 'color:red');
@@ -340,7 +340,6 @@ $(document).ready(function() {
 	 * When play again is clicked, send user back to the home page
 	 */
 	$('#play_again').click(function () {
-		$('#game_over').attr('class', 'hidden');
 		goHome();
 	});
 
