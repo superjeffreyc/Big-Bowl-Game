@@ -67,7 +67,14 @@ def search(request, roomCode):
 
 # Determines how many words are in the word bank for a room
 def getcount(request, roomCode):
-    return HttpResponse(str(Room.objects.all().filter(code = roomCode)[0].num_words))
+    # Create new word in WordBank model
+    rooms = Room.objects.all().filter(code = roomCode)
+
+    # Bad room code
+    if len(rooms) != 1:
+        return HttpResponsePermanentRedirect('/')
+
+    return HttpResponse(str(rooms[0].num_words))
 
 
 # Adds a word to a room
@@ -102,7 +109,12 @@ def addword(request):
 # Returns a HttpResponse of the list of words associated with a room code
 def getwords(request, roomCode):
 
-    currentRoom = Room.objects.all().filter(code = roomCode)[0]
+    rooms = Room.objects.all().filter(code = roomCode)
+
+    if len(rooms) != 1:
+        return HttpResponsePermanentRedirect('/')
+
+    currentRoom = rooms[0]
     wordList = WordBank.objects.all().filter(room = currentRoom)
 
     wordString = ""
