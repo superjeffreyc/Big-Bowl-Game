@@ -87,3 +87,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Static files that will automatically be created on Heroku
+config/staticfiles/
