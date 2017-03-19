@@ -310,10 +310,19 @@ $(document).ready(function() {
 
 			    if (timeRemaining == 0) {
 			    	clearInterval(interval);
-					switchTurns();
+			    	$('#gameplay').attr('class', 'hidden');
+			    	$('#timesUp').attr('class', 'container');	// Make it visible
 			    }
 			}, 1000);
 		}
+	});
+
+	/*
+	 * After the timer reaches 0 and the continue button is pressed, show the next team's turn
+	 */
+	$('#timesup_continue_btn').click(function () {
+		$('#timesUp').attr('class', 'hidden');
+		switchTurns();
 	});
 
 	/*
@@ -340,13 +349,22 @@ $(document).ready(function() {
 			if (num_words == 0) {
 				$('#word').text("Round complete!");
 				clearInterval(interval);
-				updateRound();
+		    	$('#gameplay').attr('class', 'hidden');
+		    	$('#roundComplete').attr('class', 'container');	// Make it visible
 			}
 			else {
 				showCurrentWord();
 			}
 		}
 
+	});
+
+	/*
+	 * After the round ends and the continue button is pressed, show the next team's turn
+	 */
+	$('#roundcomplete_continue_btn').click(function () {
+		$('#roundComplete').attr('class', 'hidden');
+		updateRound();
 	});
 
 	/*
