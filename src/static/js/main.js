@@ -17,8 +17,12 @@ var words;
 var team1score = 0;
 var team2score = 0;
 var code;
+var player;
 
 $(document).ready(function() {
+
+	// Load the YouTube player
+	loadPlayer();
 
 	/***************************************************************************/
     /************************* HOME FUNCTIONS *********************************/
@@ -150,6 +154,9 @@ $(document).ready(function() {
 				// Hide home screen and show lobby
 				$('#startScreen').hide();
 	        	$('#lobby').attr('class', 'container');
+
+	        	// Focus on the textbox
+	        	$("#submit_word_box").focus();
     		}
 
 		});
@@ -175,6 +182,15 @@ $(document).ready(function() {
     $(document).on('click', '#back_home_btn', function() {
         goHome();
     });
+
+    /*
+     * User presses enter in submit word textbox
+     */
+    $("#submit_word_box").keyup(function(event) {
+	    if(event.keyCode == 13) {	// Enter button
+	        $("#submit_word_btn").click();
+	    }
+	});
 
     /*
      * Processes the user submitted word and adds it to the database
@@ -224,6 +240,9 @@ $(document).ready(function() {
 
 		// Display message for 3 seconds
 	    $("#lobby_message").show().delay(3000).fadeOut();
+
+	    // Put cursor back in textbox
+	    $("#submit_word_box").focus();
 
     });
 
@@ -312,6 +331,7 @@ $(document).ready(function() {
 			    	clearInterval(interval);
 			    	$('#gameplay').attr('class', 'hidden');
 			    	$('#timesUp').attr('class', 'container');	// Make it visible
+			    	playRoundOverSound();
 			    }
 			}, 1000);
 		}
@@ -322,6 +342,7 @@ $(document).ready(function() {
 	 */
 	$('#timesup_continue_btn').click(function () {
 		$('#timesUp').attr('class', 'hidden');
+		player.stopVideo();
 		switchTurns();
 	});
 
@@ -497,5 +518,37 @@ $(document).ready(function() {
 
       return array;
     }
+
+    function playRoundOverSound() {
+	    player.playVideo();
+	}
+
+	// Loads the IFrame Player API code asynchronously.
+	function loadPlayer() {
+		if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+
+			var tag = document.createElement('script');
+			tag.src = "https://www.youtube.com/iframe_api";
+			var firstScriptTag = document.getElementsByTagName('script')[0];
+			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+			window.onYouTubePlayerAPIReady = function() {
+				loadVideo();
+			};
+		}
+		else {
+			loadVideo();
+		}
+	}
+
+	// Load the YouTube video: https://www.youtube.com/watch?v=84ARxFe7u3I
+	function loadVideo() {
+		player = new YT.Player('player', {
+		  height: '0',
+		  width: '0',
+		  videoId: '84ARxFe7u3I',
+		  playerVars: { 'start': 3, },
+		});
+	}
 
 });
