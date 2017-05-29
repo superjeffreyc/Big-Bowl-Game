@@ -339,13 +339,6 @@ $(document).ready(function() {
 	});
 
 	/*
-	 * Temporarily shows the word for 2 seconds
-	 */
-	$('#show_word_btn').click(function () {
-		showCurrentWord();
-	});
-
-	/*
 	 * Team guessed the word correctly
 	 */
 	$('#correct_btn').click(function () {
@@ -478,14 +471,7 @@ $(document).ready(function() {
      */
     function showCurrentWord() {
     	$('#word').text(words[counter]);
-
-    	clearInterval(display);	// Stop the word fadeout timer
-
     	$('#word_display').show();
-
-    	display = setTimeout(function(){
-    		$('#word_display').fadeOut();
-    	}, 2000);
     }
 
     /*
