@@ -16,8 +16,14 @@ var words;
 var team1score = 0;
 var team2score = 0;
 var code;
+var audio;
 
 $(document).ready(function() {
+
+	// Setup the beeping noise for when timer is up
+	audio = document.getElementById("beep");
+	audio.loop = true;	// Does not work on Firefox
+	audio.play();
 
 	/***************************************************************************/
     /************************* HOME FUNCTIONS *********************************/
@@ -339,6 +345,8 @@ $(document).ready(function() {
 			    	clearInterval(interval);
 			    	$('#gameplay').attr('class', 'hidden');
 			    	$('#timesUp').attr('class', 'container');	// Make it visible
+
+					audio.play();
 			    }
 			}, 1000);
 		}
