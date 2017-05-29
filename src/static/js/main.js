@@ -357,6 +357,7 @@ $(document).ready(function() {
 	$('#timesup_continue_btn').click(function () {
 		$('#timesUp').attr('class', 'hidden');
 		switchTurns();
+		audio.pause();
 	});
 
 	/*
