@@ -150,6 +150,9 @@ $(document).ready(function() {
 				// Hide home screen and show lobby
 				$('#startScreen').hide();
 	        	$('#lobby').attr('class', 'container');
+
+	        	// Focus on the textbox
+	        	$("#submit_word_box").focus();
     		}
 
 		});
@@ -163,6 +166,9 @@ $(document).ready(function() {
     	$('#gameRoomCode').text(code);
 		$('#room_code').text('Room Code: ' + code);
 		startWordCountInterval();
+
+		// Focus on the textbox
+    	$("#submit_word_box").focus();
     }
 
     /***************************************************************************/
@@ -182,6 +188,15 @@ $(document).ready(function() {
     $("#submit_word_box").keyup(function(event) {
 	    if(event.keyCode == 13) {	// Enter button
 	        $("#submit_word_btn").click();
+	    }
+	});
+
+	/*
+     * User presses enter in submit word textbox
+     */
+    $("#room_code_box").keyup(function(event) {
+	    if(event.keyCode == 13) {	// Enter button
+	        $("#submit_room_code_btn").click();
 	    }
 	});
 
