@@ -16,12 +16,8 @@ var words;
 var team1score = 0;
 var team2score = 0;
 var code;
-var audio;
 
 $(document).ready(function() {
-
-	// Setup the beeping noise for when timer is up
-	audio = document.getElementById("beep");
 
 	/***************************************************************************/
     /************************* HOME FUNCTIONS *********************************/
@@ -343,8 +339,6 @@ $(document).ready(function() {
 			    	clearInterval(interval);
 			    	$('#gameplay').attr('class', 'hidden');
 			    	$('#timesUp').attr('class', 'container');	// Make it visible
-
-					audio.play();
 			    }
 			}, 1000);
 		}
@@ -356,7 +350,6 @@ $(document).ready(function() {
 	$('#timesup_continue_btn').click(function () {
 		$('#timesUp').attr('class', 'hidden');
 		switchTurns();
-		audio.pause();
 	});
 
 	/*
