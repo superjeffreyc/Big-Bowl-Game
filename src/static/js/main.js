@@ -9,7 +9,6 @@ var turn = 1;
 var timeLimit = 60;
 var timeRemaining = timeLimit;
 var interval;
-var display;
 var round = 1;
 var num_words = 0;
 var counter = 0;
