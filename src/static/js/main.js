@@ -342,6 +342,9 @@ $(document).ready(function() {
 	 */
 	$('#correct_btn').click(function () {
 
+		// Temporarily disable to prevent accidental rapid clicks
+		$(this).attr("disabled", true);
+
 		if (turn == 1) team1score += 1;
 		else team2score += 1;
 		updateTeamScore();
@@ -361,6 +364,11 @@ $(document).ready(function() {
 				showCurrentWord();
 			}
 		}
+
+		// Re-enable this button after half a second
+		setTimeout(function () {
+						$('#correct_btn').attr("disabled", false);
+					}, 500);
 
 	});
 
