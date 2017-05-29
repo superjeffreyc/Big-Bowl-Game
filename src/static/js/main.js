@@ -11,7 +11,7 @@ var timeRemaining = timeLimit;
 var interval;
 var round = 1;
 var num_words = 0;
-var counter = 0;
+var counter = 0;	// Index of the current word
 var words;
 var team1score = 0;
 var team2score = 0;
@@ -409,11 +409,28 @@ $(document).ready(function() {
 
     	timeRemaining = timeLimit;	// Reset the timer
 
+    	swapCurrentWord(words, counter);	// Swap current word with a later one
+
     	// Reset the UI and show the next team's turn
     	$('#begin').show();
     	$('#gameplay').attr('class', 'hidden');
     	$('#turn').text("Team " + turn + " Turn");
     	$('#timer').text("Seconds remaining: 60");
+
+    }
+
+    /*
+     * Swap the current word with a later word in the array, to 'randomize' the drawing.
+     * Note: The word can be swapped with itself.
+     */
+    function swapCurrentWord(array, currentIndex) {
+
+        var randomIndex = currentIndex + Math.floor(Math.random() * (array.length - currentIndex));
+
+        // Swap them
+        var temporaryWord = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryWord;
 
     }
 
