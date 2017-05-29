@@ -280,6 +280,7 @@ $(document).ready(function() {
             else {
                 $('#lobby_message').attr('style', 'color:red');
                 $('#lobby_message').text('The word bank must have at least 5 words.');
+                $('#submit_word_box').focus();
             }
         });
     });
