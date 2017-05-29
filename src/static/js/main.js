@@ -205,7 +205,7 @@ $(document).ready(function() {
      */
     $('#submit_word_btn').click(function () {
         var word = $('#submit_word_box').val().trim();
-        var hasSpecialChar = /[\(\)~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
+        var hasSpecialChar = /[\(\)~`!#$%\^&*+=\-\[\];,/{}|\\":<>\?]/;
 
         if (word == '') {
             // Word cannot be blank
@@ -246,8 +246,8 @@ $(document).ready(function() {
 	        });
         }
 
-		// Display message for 3 seconds
-	    $("#lobby_message").show().delay(3000).fadeOut();
+		// Display message
+	    $("#lobby_message").show()
 
 	    // Put cursor back in textbox
 	    $("#submit_word_box").focus();
@@ -280,7 +280,6 @@ $(document).ready(function() {
             else {
                 $('#lobby_message').attr('style', 'color:red');
                 $('#lobby_message').text('The word bank must have at least 5 words.');
-    	        $("#lobby_message").show().delay(3000).fadeOut();
             }
         });
     });
