@@ -77,6 +77,7 @@ $(document).ready(function() {
     $('#join_game_btn').click(function () {
         $('#startScreen').hide();
         $('#joinScreen').attr('class', 'container');    // Make it visible
+        $('#room_code_box').focus();
     });
 
     /*
@@ -150,9 +151,6 @@ $(document).ready(function() {
 				// Hide home screen and show lobby
 				$('#startScreen').hide();
 	        	$('#lobby').attr('class', 'container');
-
-	        	// Focus on the textbox
-	        	$("#submit_word_box").focus();
     		}
 
 		});
