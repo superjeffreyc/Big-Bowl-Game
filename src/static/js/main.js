@@ -22,7 +22,6 @@ $(document).ready(function() {
 
 	// Setup the beeping noise for when timer is up
 	audio = document.getElementById("beep");
-	audio.loop = true;	// Does not work on Firefox
 
 	/***************************************************************************/
     /************************* HOME FUNCTIONS *********************************/
