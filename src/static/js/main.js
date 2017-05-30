@@ -16,8 +16,13 @@ var words;
 var team1score = 0;
 var team2score = 0;
 var code;
+var audio;
+var hasLoadedAudio = false;
 
 $(document).ready(function() {
+
+	// Setup the beeping noise for when timer is up
+  	audio = document.getElementById("beep");
 
 	/***************************************************************************/
     /************************* HOME FUNCTIONS *********************************/
@@ -262,6 +267,7 @@ $(document).ready(function() {
         $.get("/getcount/" + code, function(data, status){
 
             if (data >= 5) {
+
                 /*
             	 * Prompt before leaving lobby
             	 */
@@ -339,8 +345,18 @@ $(document).ready(function() {
 			    	clearInterval(interval);
 			    	$('#gameplay').attr('class', 'hidden');
 			    	$('#timesUp').attr('class', 'container');	// Make it visible
+			    	audio.play();
 			    }
 			}, 1000);
+
+			/*
+			 * Due to the requirement of user interaction to play audio, load the audio here so we can use the play/pause functions anytime.
+			 * Only load the audio once.
+			 */
+			if (!hasLoadedAudio) {
+	  			audio.load();
+	  			hasLoadedAudio = true;
+			}
 		}
 	});
 
@@ -350,6 +366,8 @@ $(document).ready(function() {
 	$('#timesup_continue_btn').click(function () {
 		$('#timesUp').attr('class', 'hidden');
 		switchTurns();
+		audio.pause();
+		audio.currentTime = 0;
 	});
 
 	/*
@@ -370,8 +388,8 @@ $(document).ready(function() {
 			updateWordsRemaining();
 
 			if (num_words == 0) {
-				$('#word').text("Round complete!");
 				clearInterval(interval);
+				$('#word').text("Round complete!");
 		    	$('#gameplay').attr('class', 'hidden');
 		    	$('#roundComplete').attr('class', 'container');	// Make it visible
 			}
@@ -393,6 +411,8 @@ $(document).ready(function() {
 	$('#roundcomplete_continue_btn').click(function () {
 		$('#roundComplete').attr('class', 'hidden');
 		updateRound();
+		audio.pause();
+		audio.currentTime = 0;
 	});
 
 	/*
