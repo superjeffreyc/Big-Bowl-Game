@@ -345,6 +345,7 @@ $(document).ready(function() {
 			    	clearInterval(interval);
 			    	$('#gameplay').attr('class', 'hidden');
 			    	$('#timesUp').attr('class', 'container');	// Make it visible
+					$('#timer').hide();
 			    	audio.play();
 			    }
 			}, 1000);
@@ -392,6 +393,7 @@ $(document).ready(function() {
 				$('#word').text("Round complete!");
 		    	$('#gameplay').attr('class', 'hidden');
 		    	$('#roundComplete').attr('class', 'container');	// Make it visible
+	    		$('#timer').hide();
 			}
 			else {
 				showCurrentWord();
@@ -451,7 +453,7 @@ $(document).ready(function() {
     	$('#gameplay').attr('class', 'hidden');
     	$('#turn').text("Team " + turn + " Turn");
     	$('#timer').text("Seconds remaining: 60");
-
+    	$('#timer').show();
     }
 
     /*
