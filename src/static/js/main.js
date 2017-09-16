@@ -301,7 +301,7 @@ $(document).ready(function() {
 
 	function startWordCountInterval() {
 		/*
-		 * Run this function every 5 seconds to update the word count in the lobby
+		 * Run this function every second to update the word count in the lobby
 		 */
 		word_count_interval = setInterval(function() {
 
@@ -314,7 +314,7 @@ $(document).ready(function() {
 				}
 			});
 
-		}, 5000);
+		}, 1000);
 	}
 
 	/***************************************************************************/
