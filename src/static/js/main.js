@@ -403,10 +403,10 @@ $(document).ready(function() {
 			}
 		}
 
-		// Re-enable this button after half a second
+		// Re-enable this button after 1 second
 		setTimeout(function() {
 			$('#correct_btn').attr("disabled", false);
-		}, 500);
+		}, 1000);
 
 	});
 
