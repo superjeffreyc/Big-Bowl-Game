@@ -58,6 +58,9 @@ $(document).ready(function() {
 		team1score = 0;
 		team2score = 0;
 		words_contributed = 0;
+		timeRemaining = 0;
+		roundName = "TABOO";
+		$('#round').text("ROUND " + round + ": " + roundName);
 		$('#word_count').text("Word Bank Count: 0");
 		$('#contribution').text('You have contributed 0 word(s)');
 		$('#gameRoomCode').text('');
