@@ -60,6 +60,7 @@ $(document).ready(function() {
 		words_contributed = 0;
 		timeRemaining = timeLimit;
 		roundName = "TABOO";
+		$('#turn').text("Team " + turn + " Turn");
 		$('#round').text("ROUND " + round + ": " + roundName);
 		$('#word_count').text("Word Bank Count: 0");
 		$('#contribution').text('You have contributed 0 word(s)');
