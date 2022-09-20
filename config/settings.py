@@ -29,7 +29,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE = (
-    'sslify.middleware.SSLifyMiddleware',
+#    'sslify.middleware.SSLifyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
