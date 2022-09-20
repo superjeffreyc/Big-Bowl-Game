@@ -15,7 +15,8 @@ class Room(models.Model):
 
 class WordBank(models.Model):
     word = models.CharField(max_length=50)
-    room = models.ForeignKey(Room)
+    room = models.ForeignKey(Room,
+                             on_delete=models.CASCADE)
 
     class Meta:
         db_table = "wordbank"
