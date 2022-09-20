@@ -8,6 +8,6 @@ export SECRET_KEY="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -
 sudo -u postgres createuser "$(whoami)"
 sudo -u postgres createdb ubuntu
 touch .env
-python manage.py makemigrations
-python manage.py migrate
-python manage.py collectstatic
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py collectstatic
